@@ -4,6 +4,8 @@ import { userActions } from '../../actions';
 
 import { connect } from 'react-redux';
 
+import Alert from '../Alert';
+
 class Register extends React.Component {
   constructor() {
     super();
@@ -23,11 +25,15 @@ class Register extends React.Component {
     e.preventDefault();
 
     this.setState({ submitted: true });
-    // const { user } = this.state;
-    let user = this.state;
+    const user = this.state;
     const { dispatch } = this.props;
     if (user.username && user.password && user.repeatedPassword) {
-        dispatch(userActions.register(user));
+        let userDataToServer = {
+          username: user.username,
+          password: user.password,
+          email: user.email
+        }
+        dispatch(userActions.register(userDataToServer));
     }
   }
 
@@ -39,11 +45,14 @@ class Register extends React.Component {
   }
 
   render() {
+    let passwordsSame = this.state.password !== this.state.repeatedPassword;
+
     return (
       <div className="page register-page">
         <div className="form-title">
           Sign up
         </div>
+        <Alert />
         <form name="form" className="user-form" onSubmit={this.handleSubmit}>
           <div className="form-group">
             <label htmlFor="username">Username</label>
@@ -54,28 +63,31 @@ class Register extends React.Component {
           </div>
           <div className="form-group">
             <label htmlFor="username">Password</label>
-            <input type="password" name="password" value={this.state.password} onChange={this.handleChange} />
+            <input type="password" name="password" value={this.state.password} onChange={this.handleChange} className={passwordsSame ? "red-input": ""} />
             {this.state.submitted && !this.state.password &&
               <div className="help-block">Password is required</div>
             }
           </div>
           <div className="form-group">
             <label htmlFor="username">Repeat Password</label>
-            <input type="password" name="repeatedPassword" value={this.state.repeatedPassword} onChange={this.handleChange} />
+            <input type="password" name="repeatedPassword" value={this.state.repeatedPassword} onChange={this.handleChange} className={passwordsSame ? "red-input": ""}/>
             {this.state.submitted && !this.state.repeatedPassword &&
               <div className="help-block">Repeated password is required</div>
+            }
+            {passwordsSame && this.state.submitted &&
+              <div className="help-block">Passwords must be the same</div>
             }
           </div>
           <div className="form-group">
             <label htmlFor="username">Email (not required, but can be used to reset your password)</label>
-            <input type="text" name="email" value={this.state.email} onChange={this.handleChange} />
+            <input type="email" name="email" value={this.state.email} onChange={this.handleChange} />
           </div>
           <div className="form-group">
             <button className="btn btn-primary">Register</button>
             {this.props &&
                 <div className="loading"></div>
             }
-            <Link to="/register" className="btn btn-link">Register</Link>
+            <Link to="/login" className="btn btn-link">Log in</Link>
           </div>
         </form>
       </div>
@@ -86,8 +98,8 @@ class Register extends React.Component {
 function mapStateToProps(state) {
     const { registering } = state.registration;
     return {
-        registering
-    };
+      registering
+    }
 }
 
 const connectedRegister = connect(mapStateToProps)(Register);
