@@ -1,5 +1,11 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import { connect } from 'react-redux';
+
+import Alert from '../Alert';
+
+import { userActions } from '../../actions';
+
 
 class Login extends React.Component {
   constructor() {
@@ -16,7 +22,17 @@ class Login extends React.Component {
   handleSubmit(e) {
     // console.log("submit bitch")
     e.preventDefault();
-    console.log(this.state);
+
+    this.setState({ submitted: true });
+    const loginData = this.state;
+    const { dispatch } = this.props;
+    if (loginData.username && loginData.password) {
+        let userDataToServer = {
+          username: loginData.username,
+          password: loginData.password
+        }
+        dispatch(userActions.login(userDataToServer));
+    }
   }
 
   handleChange(e) {
@@ -33,6 +49,7 @@ class Login extends React.Component {
         <div className="form-title">
           Log in
         </div>
+        <Alert />
         <form name="form" className="user-form" onSubmit={this.handleSubmit}>
           <div className="form-group">
             <label htmlFor="username">Username</label>
@@ -61,4 +78,12 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+function mapStateToProps(state) {
+    const { registering } = state.registration;
+    return {
+      registering
+    }
+}
+
+const connectedLogin = connect(mapStateToProps)(Login);
+export default connectedLogin;

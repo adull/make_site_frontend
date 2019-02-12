@@ -11,14 +11,14 @@ export const userActions = {
   getAll
 }
 
-function login(username, password) {
+function login(loginData) {
   return dispatch => {
-    dispatch(request({ username }));
+    dispatch(request({ loginData }));
 
-    userService.login(username, password)
+    userService.login(loginData)
       .then (
         user => {
-          dispatch(success(user));
+          dispatch(success(loginData));
           history.push('/dashboard');
         },
         error => {
@@ -40,26 +40,29 @@ function logout() {
   return { type: userConstants.LOGOUT}
 }
 
-function register(username, password) {
+function register(user) {
   return dispatch => {
-    dispatch(request(username));
+    console.log("before calling dispatch request")
+    dispatch(request(user));
+    console.log("after calling dispatch request")
 
-    userService.register(username, password)
-      .then (
-        username => {
+
+    userService.register(user)
+      .then (user => {
           dispatch(success());
           history.push('/login');
           dispatch(alertActions.success("Succesfully registered"));
         },
         error => {
+          console.log("failure")
           dispatch(failure(error.toString()));
           dispatch(alertActions.error(error.toString()));
         }
       );
   }
 
-  function request(user) { return { type: userConstants.REGISTER_REQUEST, username }}
-  function success(user) { return { type: userConstants.REGISTER_SUCCESS, username }}
+  function request(user) { return { type: userConstants.REGISTER_REQUEST, user }}
+  function success(user) { return { type: userConstants.REGISTER_SUCCESS, user }}
   function failure(error) { return { type: userConstants.REGISTER_FAILURE, error }}
 }
 

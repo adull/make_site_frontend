@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { userActions } from '../../actions';
-
 import { connect } from 'react-redux';
 
 import Alert from '../Alert';
+
+import { userActions } from '../../actions';
+
 
 class Register extends React.Component {
   constructor() {
@@ -27,7 +28,7 @@ class Register extends React.Component {
     this.setState({ submitted: true });
     const user = this.state;
     const { dispatch } = this.props;
-    if (user.username && user.password && user.repeatedPassword) {
+    if (user.username && user.password && user.password === user.repeatedPassword) {
         let userDataToServer = {
           username: user.username,
           password: user.password,
@@ -46,7 +47,8 @@ class Register extends React.Component {
 
   render() {
     let passwordsSame = this.state.password !== this.state.repeatedPassword;
-
+    // console.log(this.props)
+    // console.log(this.state)
     return (
       <div className="page register-page">
         <div className="form-title">

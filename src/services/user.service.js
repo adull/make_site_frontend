@@ -64,20 +64,8 @@ function register(username, password) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(username, password)
     };
-    // console.log("hit this bitch")
 
-    // return fetch(`${config.apiUrl}/register`, requestOptions).then(handleResponse);
     return fetch('/api/register', requestOptions).then(handleResponse);
-    // fetch('/api/register')
-    //   .then(response => {
-    //     // console.log(response);
-    //     console.log("register bitch");
-    //     response.json();
-    //   })
-    //   .then((json) => {
-    //     console.log(json);
-    //   })
-    // return null;
 }
 
 function update(user) {
@@ -92,7 +80,7 @@ function update(user) {
 }
 
 function handleResponse(response) {
-    // console.log(response);
+    console.log(response);
     return response.text().then(text => {
         const data = text && JSON.parse(text);
         console.log(data);
@@ -100,18 +88,18 @@ function handleResponse(response) {
             if (response.status === 401) {
                 // auto logout if 401 response returned from api
                 logout();
-                // location.reload(true);
             }
 
             const error = (data && data.message) || response.statusText;
             return Promise.reject(error);
         }
         else if(data.success === false) {
+          console.log("sucess is false")
           const error = (data && data.message) || response.statusText;
           return Promise.reject(error);
         }
         else {
-          return data;  
+          return data;
         }
     });
 }
