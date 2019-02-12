@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { alertActions } from '../../actions';
+// import { alertActions } from '../../actions';
 
 import { connect } from 'react-redux';
 

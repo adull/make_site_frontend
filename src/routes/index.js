@@ -15,7 +15,6 @@ class Routes extends React.Component {
   constructor(props) {
     super(props);
 
-    console.log(this.props)
     const { dispatch } = this.props;
     history.listen((location, action) => {
       dispatch(alertActions.clear());

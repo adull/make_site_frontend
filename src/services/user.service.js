@@ -1,10 +1,5 @@
-// import config from 'config';
 import { authHeader } from '../helpers';
-const dotenv = require('dotenv')
-
-// console.log(dotenv)
-
-console.log(process.env);
+// const dotenv = require('dotenv')
 
 export const userService = {
     login,
@@ -15,15 +10,15 @@ export const userService = {
     update,
 };
 
-function login(username, password) {
+function login(user) {
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password })
+        body: JSON.stringify(user)
     };
 
     // return fetch(`${config.apiUrl}/user-login`, requestOptions)
-    return fetch(`/user-login`, requestOptions)
+    return fetch(`/api/user-login`, requestOptions)
         .then(handleResponse)
         .then(user => {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
@@ -45,7 +40,7 @@ function getAll() {
     };
 
     // return fetch(`${config.apiUrl}/get-users`, requestOptions).then(handleResponse);
-    return fetch(`/get-users`, requestOptions).then(handleResponse);
+    return fetch(`/api/get-users`, requestOptions).then(handleResponse);
 }
 
 function getById(id) {
@@ -55,7 +50,7 @@ function getById(id) {
     };
 
     // return fetch(`${config.apiUrl}/get-user/${id}`, requestOptions).then(handleResponse);
-    return fetch(`/get-user/${id}`, requestOptions).then(handleResponse);
+    return fetch(`/api/get-user/${id}`, requestOptions).then(handleResponse);
 }
 
 function register(username, password) {
@@ -76,7 +71,7 @@ function update(user) {
     };
 
     // return fetch(`${config.apiUrl}/users/${user.id}`, requestOptions).then(handleResponse);
-    return fetch(`/users/${user.id}`, requestOptions).then(handleResponse);
+    return fetch(`/api/users/${user.id}`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {
