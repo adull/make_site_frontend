@@ -15,38 +15,37 @@ class Login extends React.Component {
       password: '',
       submitted: false
     }
-    this.handleSubmit = this.handleSubmit.bind(this);
+
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(e) {
+    const {name, value} = e.target;
+    this.setState({
+      [name]: value
+    });
   }
 
   handleSubmit(e) {
-    // console.log("submit bitch")
     e.preventDefault();
 
     this.setState({ submitted: true });
     const loginData = this.state;
     const { dispatch } = this.props;
     if (loginData.username && loginData.password) {
-        let userDataToServer = {
-          username: loginData.username,
-          password: loginData.password
-        }
-        dispatch(userActions.login(userDataToServer));
+      let userDataToServer = {
+        username: loginData.username,
+        password: loginData.password
+      }
+      dispatch(userActions.login(userDataToServer));
     }
-  }
-
-  handleChange(e) {
-    const {name, value} = e.target;
-    console.log(e.target)
-    this.setState({
-      [name]: value
-    });
   }
 
   render() {
     return (
       <div className="page login-page">
-        <div className="form-title">
+        <div className="page-title login-title">
           Log in
         </div>
         <Alert />
@@ -80,6 +79,7 @@ class Login extends React.Component {
 
 function mapStateToProps(state) {
     const { registering } = state.registration;
+    console.log({registering})
     return {
       registering
     }

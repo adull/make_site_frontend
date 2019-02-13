@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 class Alert extends React.Component {
   render() {
     if(this.props.message) {
+      console.log(this.props.type);
       return (
         <div className={`alert ${this.props.type}`}>{this.props.message}</div>
       );

@@ -1,0 +1,10 @@
+.alert {
+  border: 1px solid black;
+
+  &.alert-danger {
+    background-color: red;
+  }
+  &.alert-success {
+    background-color: green;
+  }
+}

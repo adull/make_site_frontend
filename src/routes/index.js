@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 
 import Homepage from '../components/Homepage';
+import Dashboard from '../components/Dashboard';
 import Login from '../components/Login';
 import Register from '../components/Register';
 
@@ -25,7 +26,7 @@ class Routes extends React.Component {
       <Router history={history}>
         <Switch>
           <Route exact path="/" component={Homepage} />
-          <Route path="/dashboard" component={Homepage} />
+          <Route path="/dashboard" render={(_props) => <Dashboard />} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
         </Switch>

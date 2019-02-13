@@ -98,10 +98,10 @@ class Register extends React.Component {
 }
 
 function mapStateToProps(state) {
-    const { registering } = state.registration;
-    return {
-      registering
-    }
+  const { registering } = state.registration;
+  return {
+    registering
+  };
 }
 
 const connectedRegister = connect(mapStateToProps)(Register);
