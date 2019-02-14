@@ -14,10 +14,12 @@ class Modal extends React.Component {
     return (
       <div className="modal-backdrop" onClick={this.props.onClose}>
         <div className={"modal " + this.props.className } onClick={(e) => this.stopClose(e)}>
-        <span className="modal-close text-blue-arial" onClick={this.props.onClose}>
-          [ x ]
-        </span>
-          {this.props.children}
+          <span className="modal-close" onClick={this.props.onClose}>
+            [ x ]
+          </span>
+          <div className="modal-content">
+            {this.props.children}
+          </div>
         </div>
       </div>
     );

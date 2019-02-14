@@ -32,12 +32,13 @@ function getPages() {
 }
 
 function deletePage(page) {
+  console.log(page)
   const requestOptions = {
     method: 'GET',
     headers: authHeader()
   }
 
-  return fetch(`/api/delete-page/{page}`, requestOptions).then(handleResponse);
+  return fetch(`/api/delete-page/` + page, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {

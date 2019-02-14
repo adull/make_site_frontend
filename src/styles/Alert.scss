@@ -1,10 +1,17 @@
+@import "variables";
+
 .alert {
+  margin: 20px;
+  padding: 5px;
   border: 1px solid black;
+  text-align: center;
 
   &.alert-danger {
-    background-color: red;
+    background-color: $red;
+    color: $white;
   }
   &.alert-success {
-    background-color: green;
+    background-color: $green;
+    color: $black;
   }
 }

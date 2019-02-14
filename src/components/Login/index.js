@@ -13,6 +13,7 @@ class Login extends React.Component {
     this.state = {
       username: '',
       password: '',
+      validSubmission: false,
       submitted: false
     }
 
@@ -34,6 +35,9 @@ class Login extends React.Component {
     const loginData = this.state;
     const { dispatch } = this.props;
     if (loginData.username && loginData.password) {
+      this.setState({
+        validSubmission: true
+      })
       let userDataToServer = {
         username: loginData.username,
         password: loginData.password
@@ -52,25 +56,25 @@ class Login extends React.Component {
         <form name="form" className="user-form" onSubmit={this.handleSubmit}>
           <div className="form-group">
             <label htmlFor="username">Username</label>
-            <input type="text" name="username" value={this.state.username} onChange={this.handleChange} />
-            {this.state.submitted && !this.state.username &&
-              <div className="help-block">Username is required</div>
-            }
+            <input type="text" name="username" value={this.state.username} onChange={this.handleChange} autocomplete="off"/>
           </div>
+          {this.state.submitted && !this.state.username &&
+            <div className="help-block">Username is required</div>
+          }
           <div className="form-group">
             <label htmlFor="password">Password</label>
-            <input type="password" name="password" value={this.state.password} onChange={this.handleChange} />
-            {this.state.submitted && !this.state.password &&
-              <div className="help-block">Password is required</div>
-            }
+            <input type="password" name="password" value={this.state.password} onChange={this.handleChange} autocomplete="off"/>
           </div>
+          {this.state.submitted && !this.state.password &&
+            <div className="help-block">Password is required</div>
+          }
           <div className="form-group">
-            <button className="btn btn-primary">Login</button>
-            {this.props &&
-                <div className="loading"></div>
-            }
-            <Link to="/register" className="btn btn-link">Register</Link>
+            <button className="submit">Log in</button>
           </div>
+          {this.submitted && this.state.validSubmission &&
+              <div className="loading"></div>
+          }
+          <Link to="/register" className="btn btn-link">Don't have an account? Register here</Link>
         </form>
       </div>
     )

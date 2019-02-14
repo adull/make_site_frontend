@@ -1,0 +1,39 @@
+@import "variables";
+
+body {
+  font-family: 'SNFS';
+}
+
+.loading {
+  height: 5px;
+  width: 5px;
+  background-color: red;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.cms-btn {
+  font-size: $small-font;
+  position: relative;
+  margin: 20px;
+  padding: 10px;
+  border: 4px solid $grey;
+  color: $black;
+  text-decoration: none;
+  transition: 0.2s all;
+  &:hover {
+    cursor: pointer;
+    // bottom: 5px;
+    -webkit-box-shadow: 0px 6px 48px -13px rgba(0,0,0,1);
+    -moz-box-shadow: 0px 6px 48px -13px rgba(0,0,0,1);
+    box-shadow: 0px 6px 48px -13px rgba(0,0,0,1);
+  }
+  &:focus {
+    outline: none;
+    -webkit-box-shadow: 0px 6px 48px -13px rgba(0,0,0,1);
+    -moz-box-shadow: 0px 6px 48px -13px rgba(0,0,0,1);
+    box-shadow: 0px 6px 48px -13px rgba(0,0,0,1);
+  }
+}

@@ -1,1 +1,1 @@
-.alert{border:1px solid black}.alert.alert-danger{background-color:red}.alert.alert-success{background-color:green}
+@font-face{font-family:'SNFS';src:url("../assets/fonts/snfs.otf");font-weight:normal;font-style:normal}.alert{margin:20px;padding:5px;border:1px solid black;text-align:center}.alert.alert-danger{background-color:#cc3500;color:#f0f0f0}.alert.alert-success{background-color:#5fb97a;color:#000}

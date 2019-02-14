@@ -6,10 +6,10 @@ class HomepageComponent extends React.Component {
   render() {
     return (
       <div className="homepage">
-        Welcome to the page creator on abdelrazaq.com
+        <div className="homepage-title">Welcome to the page creator on abdelrazaq.com</div>
         <div className="homepage-links">
-          <Link to="/login" className="button">Login</Link>
-          <Link to="/register" className="button">Register</Link>
+          <Link to="/login" className="homepage-link">Login</Link>
+          <Link to="/register" className="homepage-link">Register</Link>
         </div>
       </div>
     );

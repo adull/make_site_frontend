@@ -7,7 +7,9 @@ import { history } from '../helpers';
 export const dashboardActions = {
   newPage,
   getPages,
-  deletePage
+  deletePage,
+  toggleAddPageModal,
+  toggleDeletePageModal
 }
 
 function newPage(newPageData) {
@@ -76,4 +78,20 @@ function deletePage(page) {
   function request() { return { type: dashboardConstants.DELETEPAGE_REQUEST }}
   function success(page) { return { type: dashboardConstants.DELETEPAGE_SUCCESS, page }}
   function failure(error) { return { type: dashboardConstants.DELETEPAGE_FAILURE, error }}
+}
+
+function toggleAddPageModal() {
+  return dispatch => {
+    dispatch({
+      type: dashboardConstants.TOGGLE_ADD_PAGE_MODAL
+    })
+  }
+}
+
+function toggleDeletePageModal() {
+  return dispatch => {
+    dispatch({
+      type: dashboardConstants.TOGGLE_DELETE_PAGE_MODAL
+    })
+  }
 }
