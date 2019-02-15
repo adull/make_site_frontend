@@ -1,10 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import Pages from './Pages';
 import NewPageForm from './NewPageForm';
 import DeletePage from './DeletePage';
+import Alert from '../Alert';
 import Modal from '../Modal';
 
 import { dashboardActions } from '../../actions';
@@ -12,7 +12,7 @@ import { dashboardActions } from '../../actions';
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props)
+    // console.log(props)
     this.state = {
       pageURLToDelete: '',
       showAddPageModal: props.dashboard.showAddPageModal,
@@ -20,6 +20,7 @@ class Dashboard extends React.Component {
       pages: []
     }
 
+    this.getPages = this.getPages.bind(this);
     this.addPage = this.addPage.bind(this);
     this.deletePage = this.deletePage.bind(this);
     this.toggleAddPageModal = this.toggleAddPageModal.bind(this);
@@ -27,11 +28,15 @@ class Dashboard extends React.Component {
   }
 
   componentDidMount() {
+    this.getPages();
+  }
+
+  getPages() {
     this.props.getPages();
   }
 
   addPage(pageData) {
-    const { dispatch } = this.props;
+    // const { dispatch } = this.props;
     let pageDataToServer = {
       url: pageData.pageURL,
       title: pageData.pageTitle,
@@ -39,13 +44,11 @@ class Dashboard extends React.Component {
       private: pageData.isPrivate
     }
     this.props.addPage(pageDataToServer);
-    this.props.getPages();
+    // this.props.getPages();
   }
 
-  deletePage(test) {
-    // console.log(this.state)
-    console.log(test)
-    const { dispatch } = this.props;
+  deletePage() {
+    // const { dispatch } = this.props;
     this.props.deletePage(this.state.pageURLToDelete);
   }
 
@@ -71,6 +74,7 @@ class Dashboard extends React.Component {
             Your pages
           </div>
         </div>
+        <Alert />
         <Pages data={this.props.dashboard} onDelete={this.toggleDeletePageModal}/>
         <button className="cms-btn add-page" onClick={this.toggleAddPageModal}>
           New page
@@ -87,7 +91,7 @@ class Dashboard extends React.Component {
 }
 
 function mapStateToProps(state) {
-  const { dashboard } = state.dashboard;
+  // const { dashboard } = state.dashboard;
   return {
     dashboard: state.dashboard
   };

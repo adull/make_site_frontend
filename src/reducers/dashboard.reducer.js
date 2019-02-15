@@ -1,4 +1,4 @@
-import { dashboardConstants } from '../constants'
+import { dashboardConstants } from '../constants';
 
 const initialState = {
   showAddPageModal: false,

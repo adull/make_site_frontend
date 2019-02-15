@@ -27,6 +27,7 @@ class Pages extends React.Component {
           pageArr.push(<Page key={i} id={page.id} author={page.author} url={page.url} title={page.title} style={page.style} deleteClicked={this.props.onDelete}/>)
         }
         if(pageArr.length > 0) {
+          // console.log(pageArr);
           return(
             <div className="pages">
               {pageArr}

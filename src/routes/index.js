@@ -7,6 +7,7 @@ import Homepage from '../components/Homepage';
 import Dashboard from '../components/Dashboard';
 import Login from '../components/Login';
 import Register from '../components/Register';
+import EditSite from '../components/EditSite';
 
 import { alertActions } from '../actions';
 import { history } from '../helpers';
@@ -29,6 +30,7 @@ class Routes extends React.Component {
           <Route path="/dashboard" render={(_props) => <Dashboard />} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
+          <Route path="/edit-site/:siteURL" component={EditSite} />
         </Switch>
       </Router>
     );

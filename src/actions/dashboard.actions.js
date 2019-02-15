@@ -2,7 +2,7 @@ import { dashboardConstants } from '../constants'
 
 import { alertActions } from './';
 import { dashboardService } from '../services';
-import { history } from '../helpers';
+// import { history } from '../helpers';
 
 export const dashboardActions = {
   newPage,
@@ -20,8 +20,11 @@ function newPage(newPageData) {
       .then (
         newPage => {
           dispatch(success(newPageData));
+          dispatch(alertActions.success("New page succesfully added."))
+
           // push to history
           console.log("ok now push to history")
+          getPages();
         },
         error => {
           dispatch(failure(error.toString()));
@@ -36,17 +39,21 @@ function newPage(newPageData) {
 }
 
 function getPages() {
+  console.log("action - get pages")
   return dispatch => {
     dispatch(request());
 
     dashboardService.getPages()
       .then (
         pages => {
+          console.log("bro fuck u")
+          console.log(pages);
           dispatch(success(pages))
           // push to history
           // console.log("ok now push to history")
         },
         error => {
+          console.log("error occuring here")
           dispatch(failure(error.toString()));
           dispatch(alertActions.error(error.toString()));
         }
@@ -59,16 +66,22 @@ function getPages() {
 }
 
 function deletePage(page) {
+  console.log("delete page")
   return dispatch => {
+    // console.log("hello")
     dispatch(request());
     dashboardService.deletePage(page)
       .then (
         page => {
+          // console.log("success")
+
           dispatch(success(page))
-          // push to history
+          dispatch(alertActions.success("Page succesfully deleted."))
           console.log("ok now push to history")
+          getPages();
         },
         error => {
+          console.log(error);
           dispatch(failure(error.toString()));
           dispatch(alertActions.error(error.toString()));
         }
