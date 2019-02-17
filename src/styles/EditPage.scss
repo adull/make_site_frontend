@@ -1,0 +1,68 @@
+@import "variables";
+
+.edit-site {
+  display: flex;
+  flex-direction: row;
+  .edit-tab {
+    width: 35%;
+    // background-color: red;
+    border-right: 2px solid $black;
+    transition: 0.3s all;
+    &.show {
+      border-right: 2px solid $black;
+      width: 35%;
+      .cms-btn {
+        // display: block;
+        // position: relative;
+        text-align: right;
+        // top
+      }
+      .show-btn {
+        position: absolute;
+        top: 15px;
+        left: -200px;
+        transition: 0.3s all;
+        opacity: 0;
+        // display: none;
+      }
+    }
+    &.hide {
+      width: 0px;
+      border: none;
+      .cms-btn {
+        // display: none;
+      }
+      .show-btn {
+        position: absolute;
+        top: 15px;
+        left: 0;
+        display: block;
+        opacity: 0.3;
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+    .edit-tab-header {
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+  .edit-page-root {
+    flex: 1;
+    width: auto;
+    background-color: yellow;
+    .section {
+      position: relative;
+      .edit-btn {
+        position: absolute;
+        top: 0;
+        right: 0;
+        border-left: 1px solid $red;
+        border-bottom: 1px solid $red;
+        padding: 2px;
+        // background-color: white;
+      }
+    }
+  }
+}

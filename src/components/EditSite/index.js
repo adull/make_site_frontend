@@ -1,30 +1,44 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import EditTab from './EditTab';
+import EditPage from './EditPage';
+
 import { editSiteActions } from '../../actions';
 
 class EditSite extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props)
+    // console.log(props)
     let siteURL = props.match.params.siteURL
-    console.log(this.props.getStyle(siteURL));
-    console.log(props)
+    // console.log(this.props.getStyle(siteURL));
+    this.props.getStyle(siteURL);
+    // console.log(props)
   }
 
   render() {
     if(this.props.editSite.style) {
       console.log(this.props.editSite.style.results)
-      console.log(JSON.parse(this.props.editSite.style.results.getStyle))
+      // console.log(JSON.parse(this.props.editSite.style.results.getStyle))
+      let style = JSON.parse(this.props.editSite.style.results.getStyle);
+      return (
+        <div className="edit-site">
+          <EditTab />
+          <EditPage style={style}/>
+        </div>
+      )
     }
     return (
-      <div>edit this bitch</div>
+      <div className="edit-site">
+        <EditTab />
+        <EditPage style={null}/>
+      </div>
     )
   }
 }
 
 function mapStateToProps(state) {
-  console.log(state)
+  // console.log(state)
   return {
     editSite: state.editSite
     // editSite: state.editSite.results.getStyle
