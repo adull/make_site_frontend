@@ -31,11 +31,12 @@ function addSection(sectionData) {
   function failure(error) { return { type: editSiteConstants.ADDSECTION_FAILURE, error }};
 }
 
-function editSection(editData) {
+function editSection(siteURL, editData) {
   return dispatch => {
-    dispatch(request(editData));
 
-    editSiteService.editSection(editData)
+    dispatch(request(editData));
+    // console.log(editData);
+    editSiteService.editSection(siteURL, editData)
       .then (
         edit => {
           dispatch(success());

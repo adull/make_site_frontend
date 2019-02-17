@@ -19,10 +19,11 @@ class EditPage extends React.Component {
 
   render() {
     if(this.props.style) {
+      // console.log(this.props.style);
       this.renderStyle();
       let sectionArr = [];
       for(let i = 0; i < this.props.style.sections.length; i ++) {
-        sectionArr.push(<PageSection key={i} style={this.props.style.sections[i]} pageSectionIndex={i} />);
+        sectionArr.push(<PageSection key={i} style={this.props.style.sections[i]} pageSectionIndex={i} updateText={this.props.updateTextSection} />);
       }
       return (
         <div className="edit-page-root" style={{backgroundColor: this.props.style.background.color}}>

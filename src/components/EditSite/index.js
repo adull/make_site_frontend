@@ -9,22 +9,31 @@ import { editSiteActions } from '../../actions';
 class EditSite extends React.Component {
   constructor(props) {
     super(props);
-    // console.log(props)
+    console.log(props);
     let siteURL = props.match.params.siteURL
-    // console.log(this.props.getStyle(siteURL));
+    this.state = {
+      siteURL: siteURL
+    }
     this.props.getStyle(siteURL);
-    // console.log(props)
+
+    this.updateTextSection = this.updateTextSection.bind(this);
+  }
+
+  updateTextSection(index, text) {
+    let oldPageStyle = JSON.parse(this.props.editSite.style.results.getStyle);
+    let formattedText = text.replace(/['"]+/g, '')
+    oldPageStyle.sections[index].text[0].html = formattedText;
+    this.props.editSection(this.state.siteURL, oldPageStyle);
   }
 
   render() {
     if(this.props.editSite.style) {
-      console.log(this.props.editSite.style.results)
       // console.log(JSON.parse(this.props.editSite.style.results.getStyle))
       let style = JSON.parse(this.props.editSite.style.results.getStyle);
       return (
         <div className="edit-site">
           <EditTab />
-          <EditPage style={style}/>
+          <EditPage style={style} updateTextSection={this.updateTextSection}/>
         </div>
       )
     }
@@ -38,18 +47,19 @@ class EditSite extends React.Component {
 }
 
 function mapStateToProps(state) {
-  // console.log(state)
+  // console.log(state.editSite)
   return {
     editSite: state.editSite
-    // editSite: state.editSite.results.getStyle
-    // style: JSON.parse(state.editSite.results.getStyle)
   }
+  // return {state.editSite};
+
 }
 
 function mapDispatchToProps(dispatch) {
   // console.log(this.props.match)
   return {
     addSection: () => { dispatch(editSiteActions.editSection()) },
+    editSection: (siteURL, index, text) => { dispatch(editSiteActions.editSection(siteURL, index, text)) },
     getStyle: (url) => { dispatch(editSiteActions.getStyle(url)) }
   }
 }

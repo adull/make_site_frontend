@@ -23,17 +23,25 @@ function addSection(sectionData) {
       });
 }
 
-function editSection(sectionData) {
+function editSection( siteURL, sectionData) {
+  // console.log("**")
+  // console.log(siteURL)
+  // console.log(sectionIndex)
+  // console.log(sectionData)
+  // console.log("**")
+  let test = {
+    sectionData
+  }
+  console.log(test)
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json'},
-    body: sectionData
+    // body: sectionData
+    body: JSON.stringify(test)
   }
 
-  let siteURL = sectionData.siteURL;
-  let sectionID = sectionData.sectionID;
 
-  let fetchURL = `/api/edit-section` + siteURL + `/` + sectionID;
+  let fetchURL = `/api/edit-section/` + siteURL
 
   return fetch(fetchURL, requestOptions)
       .then(handleResponse)
@@ -56,9 +64,12 @@ function getStyle(siteURL) {
 }
 
 function handleResponse(response) {
+    console.log(response)
     return response.text().then(text => {
+
       // console.log(response)
         const data = text && JSON.parse(text);
+        // console.log(data)
         if (!response.ok) {
             if (response.status === 401) {
             }
@@ -72,6 +83,7 @@ function handleResponse(response) {
           return Promise.reject(error);
         }
         else {
+          // console.log("should return data")
           return data;
         }
     });

@@ -15,6 +15,7 @@ class PageSection extends React.Component {
     this.toggleEditButton = this.toggleEditButton.bind(this);
     this.enterViewMode = this.enterViewMode.bind(this);
     this.enterEditMode = this.enterEditMode.bind(this);
+    this.updateText = this.updateText.bind(this);
   }
 
   toggleEditButton() {
@@ -37,6 +38,10 @@ class PageSection extends React.Component {
     })
   }
 
+  updateText(index, text) {
+    this.props.updateText(this.props.pageSectionIndex, text)
+  }
+
   render() {
     let textSubsectionsArr = [];
     // console.log(this.props.style.text)
@@ -52,7 +57,7 @@ class PageSection extends React.Component {
         <div className="edit-btn" style={ editBtnStyle } onClick={this.enterEditMode}>
           Edit
         </div>
-        {this.state.viewMode ? <ViewPageSection textSubsections={textSubsectionsArr} /> : <EditPageSection textSubsections={textSubsectionsArr} />}
+        {this.state.viewMode ? <ViewPageSection textSubsections={textSubsectionsArr} /> : <EditPageSection textSubsections={textSubsectionsArr} updateText={this.updateText} />}
       </div>
     );
   }

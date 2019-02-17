@@ -1,15 +1,15 @@
 import React from 'react';
-import {Editor,
-// import {
-        EditorState,
-        ContentState,
-        EditorChangeType,
-        RawDraftContentState,
-        CompositeDecorator,
-        convertFromHTML} from 'draft-js';
 
-// import { Editor } from 'react-draft-wysiwyg';
-// import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import { Editor } from 'react-draft-wysiwyg';
+
+import { EditorState,
+        ContentState,
+        convertFromHTML } from 'draft-js';
+
+import {stateToHTML} from 'draft-js-export-html';
+
+
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 
 import {Link} from 'react-router-dom';
@@ -20,18 +20,50 @@ function camelCaseToDash( myStr ) {
   return myStr.replace( /([a-z])([A-Z])/g, '$1-$2' ).toLowerCase();
 }
 
+let options = {
+  inlineStyleFn: (styles) => {
+    // console.log(styles);
+    let fuck = styles.filter((value) => console.log(value));
+
+    let colorKey = 'color-';
+    let color = styles.filter((value) => value.startsWith(colorKey)).first();
+    let fontSizeKey = 'fontsize-';
+    let font = styles.filter((value) => value.startsWith(fontSizeKey)).first();
+
+
+    if (color) {
+      return {
+        element: 'span',
+        style: {
+          color: color.replace(colorKey, ''),
+        },
+      };
+    }
+    else if(font) {
+      return {
+        element: 'span',
+        style: {
+          fontSize: font.replace(fontSizeKey, ''),
+        },
+      };
+    }
+  },
+};
+
 class EditPageSection extends React.Component {
   constructor(props) {
     super(props);
 
+    // console.log(props)
     let htmlText = ''
     for(let i = 0; i < props.textSubsections.length; i ++) {
-      htmlText += this.createHTML(props.textSubsections[i].props.data);
+      htmlText += props.textSubsections[i].props.data.html;
     }
-    console.log(htmlText)
+
+    // console.log(htmlText);
 
     const blocksFromHTML = convertFromHTML(htmlText);
-    console.log(blocksFromHTML)
+    // const blocksFromHTML = convertFromHTML(props.textSubsecti)
 
     const state = ContentState.createFromBlockArray(
       blocksFromHTML.contentBlocks,
@@ -72,20 +104,29 @@ class EditPageSection extends React.Component {
       }, '')
     );
 
-    // let returnVal = '<span className="text-subsection" style=' + styleString + '>' + data.textValue+ '</span>'
-    // console.log(returnVal);
-    // return returnVal;
-    return '<b class="fucker">fuck</b>';
-    // return '<i>fck</i>'
+    let returnVal = '<span className="text-subsection" style=' + styleString + '>' + data.textValue+ '</span>'
+    return returnVal;
   }
 
   updateText() {
-    console.log(this.state.editorState.getCurrentContent());
+    let index = this.props.pageSectionIndex;
+    console.log(index)
+    let contentState = this.state.editorState.getCurrentContent()
+    let newHTML = stateToHTML(contentState, options);
+    console.log(newHTML)
+    this.props.updateText(index, newHTML);
   }
 
   componentDidMount() {
     // this.focusEditor();
   }
+
+  onEditorStateChange: Function = (editorState) => {
+    // console.log(options);
+    this.setState({
+      editorState
+    });
+  };
 
   render() {
     return (
@@ -95,7 +136,7 @@ class EditPageSection extends React.Component {
           wrapperClassName="demo-wrapper"
           editorClassName="demo-editor"
           editorState={this.state.editorState}
-          onChange={this.onChange}
+          onEditorStateChange={this.onEditorStateChange}
         />
         <div className="update cms-btn" onClick={this.updateText}>Update</div>
       </div>
