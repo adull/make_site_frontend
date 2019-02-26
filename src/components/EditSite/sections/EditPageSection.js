@@ -1,19 +1,12 @@
 import React from 'react';
-
 import { Editor } from 'react-draft-wysiwyg';
-
 import { EditorState,
-        ContentState,
-        convertFromHTML } from 'draft-js';
-
-import {stateToHTML} from 'draft-js-export-html';
-
-
+        ContentState } from 'draft-js';
+import htmlToDraft from 'html-to-draftjs';
+import { stateToHTML } from 'draft-js-export-html';
+// import { stateFromHTML } from 'draft-js-import-html';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-
-
 import {Link} from 'react-router-dom';
-
 import TextSubsection from './TextSubsection';
 
 function camelCaseToDash( myStr ) {
@@ -22,31 +15,27 @@ function camelCaseToDash( myStr ) {
 
 let options = {
   inlineStyleFn: (styles) => {
-    // console.log(styles);
+    console.log(styles)
     let fuck = styles.filter((value) => console.log(value));
 
     let colorKey = 'color-';
     let color = styles.filter((value) => value.startsWith(colorKey)).first();
     let fontSizeKey = 'fontsize-';
-    let font = styles.filter((value) => value.startsWith(fontSizeKey)).first();
+    let fontSize = styles.filter((value) => value.startsWith(fontSizeKey)).first();
 
+    let style = {
+      element: 'span',
+      style: {}
+    }
 
     if (color) {
-      return {
-        element: 'span',
-        style: {
-          color: color.replace(colorKey, ''),
-        },
-      };
+      style.style.color = color.replace(colorKey, '');
     }
-    else if(font) {
-      return {
-        element: 'span',
-        style: {
-          fontSize: font.replace(fontSizeKey, ''),
-        },
-      };
+    if(fontSize) {
+      style.style.fontSize = fontSize.replace(fontSizeKey, '');
     }
+    console.log(style)
+    return style;
   },
 };
 
@@ -60,22 +49,16 @@ class EditPageSection extends React.Component {
       htmlText += props.textSubsections[i].props.data.html;
     }
 
-    // console.log(htmlText);
+    console.log(htmlText);
+    const blocksFromHTML = htmlToDraft(htmlText);
 
-    const blocksFromHTML = convertFromHTML(htmlText);
-    // const blocksFromHTML = convertFromHTML(props.textSubsecti)
+    const state = ContentState.createFromBlockArray(blocksFromHTML);
 
-    const state = ContentState.createFromBlockArray(
-      blocksFromHTML.contentBlocks,
-      blocksFromHTML.entityMap,
-    );
+    let editorState = EditorState.createWithContent(state);
 
     this.state = {
-      editorState: EditorState.createWithContent(
-        state,
-        // decorator,
-      ),
-    };
+      editorState: editorState
+    }
 
     this.state = {editorState: this.state.editorState}
     this.onChange = (editorState) => this.setState({editorState});
@@ -83,50 +66,39 @@ class EditPageSection extends React.Component {
       this.editor = editor;
     };
     this.updateText = this.updateText.bind(this);
-    this.createHTML = this.createHTML.bind(this);
-  }
-
-  createHTML(data) {
-    // console.log("create html gets called")
-    let style = {
-      textAlign: data.alignment,
-      borderWidth: data.borderWidth,
-      borderColor: data.borderColor,
-      borderStyle: 'solid',
-      color: data.color,
-      font: data.font,
-      fontSize: data.size,
-      textDecoration: data.textDecoration
-    }
-    const styleString = (
-      Object.entries(style).reduce((styleString, [propName, propValue]) => {
-        return `${styleString}${camelCaseToDash(propName)}:${propValue};`;
-      }, '')
-    );
-
-    let returnVal = '<span className="text-subsection" style=' + styleString + '>' + data.textValue+ '</span>'
-    return returnVal;
+    // this.createHTML = this.createHTML.bind(this);
+    this.onEditorStateChange = this.onEditorStateChange.bind(this);
+    this.myBlockRenderer = this.myBlockRenderer.bind(this)
+    this.myBlockStyleFunction = this.myBlockStyleFunction.bind(this);
   }
 
   updateText() {
     let index = this.props.pageSectionIndex;
-    console.log(index)
-    let contentState = this.state.editorState.getCurrentContent()
+    let contentState = this.state.editorState.getCurrentContent();
+    // this applies inline styles.
     let newHTML = stateToHTML(contentState, options);
-    console.log(newHTML)
+    console.log(newHTML);
     this.props.updateText(index, newHTML);
   }
 
-  componentDidMount() {
-    // this.focusEditor();
-  }
-
-  onEditorStateChange: Function = (editorState) => {
-    // console.log(options);
+  onEditorStateChange(editorState) {
     this.setState({
       editorState
     });
   };
+
+  myBlockRenderer(contentBlock) {
+    // const type = contentBlock.getType();
+    // console.log(contentBlock)
+    // console.log(type)
+  }
+
+  myBlockStyleFunction(contentBlock) {
+    // console.log(this.state.editorState.getCurrentContent());
+    // console.log(contentBlock.getText());
+  }
+
+
 
   render() {
     return (
@@ -137,6 +109,8 @@ class EditPageSection extends React.Component {
           editorClassName="demo-editor"
           editorState={this.state.editorState}
           onEditorStateChange={this.onEditorStateChange}
+          blockRendererFn={this.myBlockRenderer}
+          blockStyleFn={this.myBlockStyleFunction}
         />
         <div className="update cms-btn" onClick={this.updateText}>Update</div>
       </div>

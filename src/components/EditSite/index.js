@@ -9,30 +9,29 @@ import { editSiteActions } from '../../actions';
 class EditSite extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props);
     let siteURL = props.match.params.siteURL
+    console.log(this.props)
     this.state = {
-      siteURL: siteURL
+      siteURL: siteURL,
+      // style: this.props.getStyle(siteURL)
     }
     this.props.getStyle(siteURL);
-
     this.updateTextSection = this.updateTextSection.bind(this);
   }
 
   updateTextSection(index, text) {
     let oldPageStyle = JSON.parse(this.props.editSite.style.results.getStyle);
-    let formattedText = text.replace(/['"]+/g, '')
+    let formattedText = text.replace(/["]+/g, '\'')
     oldPageStyle.sections[index].text[0].html = formattedText;
     this.props.editSection(this.state.siteURL, oldPageStyle);
   }
 
   render() {
     if(this.props.editSite.style) {
-      // console.log(JSON.parse(this.props.editSite.style.results.getStyle))
       let style = JSON.parse(this.props.editSite.style.results.getStyle);
       return (
         <div className="edit-site">
-          <EditTab />
+          <EditTab style={style}/>
           <EditPage style={style} updateTextSection={this.updateTextSection}/>
         </div>
       )

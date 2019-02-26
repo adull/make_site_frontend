@@ -18,12 +18,13 @@ class EditTab extends React.Component {
   }
 
   render() {
+    console.log(this.props.style)
     return (
       <div className={"edit-tab " + (this.state.show ? "show" : "hide")}>
         <div className="edit-tab-header">
           <button className="cms-btn" onClick={this.toggleShow}>Hide edit tab</button>
         </div>
-        <div className="show-btn cms-btn" onClick={this.toggleShow}>Show edit tab</div>
+        <div className="show-btn" onClick={this.toggleShow}>Show edit tab</div>
       </div>
 
     )

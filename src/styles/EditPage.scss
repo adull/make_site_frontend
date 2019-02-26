@@ -34,10 +34,15 @@
       }
       .show-btn {
         position: absolute;
-        top: 15px;
+        top: 75%;
+        // width: 25px;
         left: 0;
         display: block;
         opacity: 0.3;
+        // background-color: blue;
+        &:after {
+          content: ">";
+        }
         &:hover {
           opacity: 1;
         }

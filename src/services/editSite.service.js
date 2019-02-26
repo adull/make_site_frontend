@@ -1,4 +1,9 @@
 import { authHeader } from '../helpers';
+// import htmlToJson from 'htmlToJson';
+// var htmlToJson = require('../lib/htmlToJson');
+// import htmlToJson from 'htmlToJson';
+
+
 
 export const editSiteService = {
   addSection,
@@ -24,20 +29,19 @@ function addSection(sectionData) {
 }
 
 function editSection( siteURL, sectionData) {
-  // console.log("**")
-  // console.log(siteURL)
-  // console.log(sectionIndex)
-  // console.log(sectionData)
-  // console.log("**")
-  let test = {
+  let sectionDataObj = {
     sectionData
   }
-  console.log(test)
+  // console.log(sectionDataObj);
+  // console.log("edit section")
+  // let test = sectionDataObj.sectionData.sections[1].text[0].html;
+  let test = sectionData.sections[1].text[0].html;
+  // console.log(test)
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json'},
     // body: sectionData
-    body: JSON.stringify(test)
+    body: JSON.stringify(sectionData)
   }
 
 
@@ -46,7 +50,7 @@ function editSection( siteURL, sectionData) {
   return fetch(fetchURL, requestOptions)
       .then(handleResponse)
       .then(addSection => {
-        console.log("done adding section")
+        // console.log("done adding section")
       });
 }
 
@@ -64,7 +68,7 @@ function getStyle(siteURL) {
 }
 
 function handleResponse(response) {
-    console.log(response)
+    // console.log(response)
     return response.text().then(text => {
 
       // console.log(response)
