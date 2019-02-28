@@ -25,6 +25,70 @@
         opacity: 0;
         // display: none;
       }
+      .edit-tab-controls {
+        border-top: 1px solid black;
+        .background-editor {
+          .background-options-title {
+            display: flex;
+            align-items: center;
+          }
+          .background-editor-controls {
+            margin-left: 10px;
+            &.open {
+              display: block;
+            }
+            &.close {
+              display: none;
+            }
+            .margin-controller-section {
+              margin-left: 10px;
+              &.open {
+                display: block;
+              }
+              &.close {
+                display: none;
+              }
+            }
+            .padding-controller-section {
+              margin-left: 10px;
+              &.open {
+                display: block;
+              }
+              &.close {
+                display: none;
+              }
+            }
+            .color-controller-section {
+              margin-left: 10px;
+              &.open {
+                display: block;
+              }
+              &.close {
+                display: none;
+              }
+            }
+          }
+        }
+        .editor-toggle-triangle {
+          width: 5px;
+          height: 5px;
+          margin-left: 5px;
+          &.open {
+            margin-top: 5px;
+            border-top: 5px solid black;
+            border-right: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+            border-left: 5px solid transparent;
+          }
+          &.close {
+            border-top: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+            border-left: 5px solid black;
+          }
+
+        }
+      }
     }
     &.hide {
       width: 0px;

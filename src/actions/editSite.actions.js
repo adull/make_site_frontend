@@ -7,7 +7,8 @@ import { editSiteService } from '../services';
 export const editSiteActions = {
   addSection,
   editSection,
-  getStyle
+  getStyle,
+  updateSiteBackground
 }
 
 function addSection(sectionData) {
@@ -73,5 +74,19 @@ function getStyle(siteURL) {
   function request() { return { type: editSiteConstants.GETSTYLE_REQUEST }};
   function success(style) { return { type: editSiteConstants.GETSTYLE_SUCCESS, style }};
   function failure(error) { return { type: editSiteConstants.GETSTYLE_FAILURE, error }};
+}
 
+function updateSiteBackground(backgroundJSON) {
+  // console.log(backgroundJSON);
+  return dispatch => {
+    dispatch(updateSiteBackground(backgroundJSON))
+  }
+
+  function updateSiteBackground(backgroundJSON) {
+    // console.log(backgroundJSON);
+    return {
+      type: editSiteConstants.UPDATESTYLE,
+      style: backgroundJSON
+    }
+  }
 }

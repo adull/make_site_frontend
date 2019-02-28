@@ -40,6 +40,11 @@ export function editSite(state = {}, action) {
     case editSiteConstants.GETSTYLE_FAILURE :
       return {
       }
+    case editSiteConstants.UPDATESTYLE:
+      return {
+        ...state,
+        style: action.style
+      }
     default:
       return state;
   }

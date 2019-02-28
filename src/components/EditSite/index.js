@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import EditTab from './EditTab';
+import EditTab from './edit-tab/EditTab';
 import EditPage from './EditPage';
 
 import { editSiteActions } from '../../actions';
@@ -17,6 +17,17 @@ class EditSite extends React.Component {
     }
     this.props.getStyle(siteURL);
     this.updateTextSection = this.updateTextSection.bind(this);
+    this.updateSiteBackground = this.updateSiteBackground.bind(this);
+  }
+
+  updateSiteBackground(backgroundJSON) {
+    let editSiteStyle = this.props.editSite.style.results.getStyle;
+    let editSiteStyleJSON = JSON.parse(editSiteStyle);
+    editSiteStyleJSON.background = backgroundJSON;
+    let editSiteStyleString = JSON.stringify(editSiteStyleJSON);
+    let editSite = this.props.editSite.style;
+    editSite.results.getStyle = editSiteStyleString
+    this.props.updateSiteBackground(editSite);
   }
 
   updateTextSection(index, text) {
@@ -31,35 +42,33 @@ class EditSite extends React.Component {
       let style = JSON.parse(this.props.editSite.style.results.getStyle);
       return (
         <div className="edit-site">
-          <EditTab style={style}/>
+          <EditTab style={style} updateBackground={this.updateSiteBackground} postBackground={this.props.postSiteBackground}/>
           <EditPage style={style} updateTextSection={this.updateTextSection}/>
         </div>
       )
     }
     return (
       <div className="edit-site">
-        <EditTab />
-        <EditPage style={null}/>
+        <div className="loading"></div>
       </div>
     )
   }
 }
 
 function mapStateToProps(state) {
-  // console.log(state.editSite)
   return {
     editSite: state.editSite
   }
-  // return {state.editSite};
-
 }
 
 function mapDispatchToProps(dispatch) {
-  // console.log(this.props.match)
   return {
     addSection: () => { dispatch(editSiteActions.editSection()) },
     editSection: (siteURL, index, text) => { dispatch(editSiteActions.editSection(siteURL, index, text)) },
-    getStyle: (url) => { dispatch(editSiteActions.getStyle(url)) }
+    getStyle: (url) => { dispatch(editSiteActions.getStyle(url)) },
+    updateSiteBackground: (style) => { dispatch(editSiteActions.updateSiteBackground(style)) },
+    postSiteBackground: () => { dispatch(editSiteActions.postSiteBackground()) },
+    updateSectionBackground: (backgroundJSON) => { dispatch(editSiteActions.updateSectionBackground(backgroundJSON)) }
   }
 }
 
