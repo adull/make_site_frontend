@@ -8,7 +8,8 @@ export const editSiteActions = {
   addSection,
   editSection,
   getStyle,
-  updateSiteBackground
+  updateSiteBackground,
+  updateView
 }
 
 function addSection(sectionData) {
@@ -77,16 +78,21 @@ function getStyle(siteURL) {
 }
 
 function updateSiteBackground(backgroundJSON) {
-  // console.log(backgroundJSON);
   return dispatch => {
-    dispatch(updateSiteBackground(backgroundJSON))
+    dispatch(updateSiteBackground(backgroundJSON));
   }
 
   function updateSiteBackground(backgroundJSON) {
-    // console.log(backgroundJSON);
-    return {
-      type: editSiteConstants.UPDATESTYLE,
-      style: backgroundJSON
-    }
+    return { type: editSiteConstants.UPDATESTYLE, style: backgroundJSON };
+  }
+}
+
+function updateView(view, index) {
+  return dispatch => {
+    dispatch(updateView(view, index));
+  }
+
+  function updateView(view, index) {
+    return { type: editSiteConstants.UPDATEVIEWARRAY, view: view, index: index };
   }
 }

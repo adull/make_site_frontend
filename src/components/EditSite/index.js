@@ -10,7 +10,6 @@ class EditSite extends React.Component {
   constructor(props) {
     super(props);
     let siteURL = props.match.params.siteURL
-    console.log(this.props)
     this.state = {
       siteURL: siteURL,
       // style: this.props.getStyle(siteURL)
@@ -38,12 +37,13 @@ class EditSite extends React.Component {
   }
 
   render() {
+    // console.log(this.props)
     if(this.props.editSite.style) {
       let style = JSON.parse(this.props.editSite.style.results.getStyle);
       return (
         <div className="edit-site">
           <EditTab style={style} updateBackground={this.updateSiteBackground} postBackground={this.props.postSiteBackground}/>
-          <EditPage style={style} updateTextSection={this.updateTextSection}/>
+          <EditPage style={style} updateTextSection={this.updateTextSection} viewArr={this.props.editSite.viewArr} updateView={this.props.updateView}/>
         </div>
       )
     }
@@ -57,7 +57,8 @@ class EditSite extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    editSite: state.editSite
+    editSite: state.editSite,
+    viewArr: state.viewArr
   }
 }
 
@@ -68,7 +69,8 @@ function mapDispatchToProps(dispatch) {
     getStyle: (url) => { dispatch(editSiteActions.getStyle(url)) },
     updateSiteBackground: (style) => { dispatch(editSiteActions.updateSiteBackground(style)) },
     postSiteBackground: () => { dispatch(editSiteActions.postSiteBackground()) },
-    updateSectionBackground: (backgroundJSON) => { dispatch(editSiteActions.updateSectionBackground(backgroundJSON)) }
+    updateSectionBackground: (backgroundJSON) => { dispatch(editSiteActions.updateSectionBackground(backgroundJSON)) },
+    updateView: (viewArr, index) => { dispatch(editSiteActions.updateView(viewArr, index)) }
   }
 }
 

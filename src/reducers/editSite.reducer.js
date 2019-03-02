@@ -1,7 +1,19 @@
 import { editSiteConstants } from '../constants';
 
-export function editSite(state = {}, action) {
+let initialState = {
+  viewArr: []
+}
+
+export function editSite(state = initialState, action) {
   switch(action.type) {
+    case editSiteConstants.EDITORSTATE_CHANGE :
+      let newViewArr = viewArr
+      newViewArr[action.index] = action.editorState;
+      return {
+        ...state,
+        // editorState: action.editorState
+        viewArr: newViewArr
+      }
     case editSiteConstants.ADDSECTION_REQUEST :
       return {
         ...state,
@@ -14,6 +26,15 @@ export function editSite(state = {}, action) {
       return {
         ...state,
       };
+    case editSiteConstants.UPDATEVIEWARRAY:
+      console.log(action)
+      newViewArr = state.viewArr;
+      newViewArr[action.index] = action.view;
+      return {
+        ...state,
+        // editorState: action.editorState
+        viewArr: newViewArr
+      }
     case editSiteConstants.EDITSECTION_REQUEST :
       return {
         ...state,
@@ -32,15 +53,23 @@ export function editSite(state = {}, action) {
         loading: true
       }
     case editSiteConstants.GETSTYLE_SUCCESS :
+      let jsonStyle = JSON.parse(action.style.results.getStyle)
+      let sections = jsonStyle.sections;
+      let viewArr = [];
+      for(var i = 0; i < sections.length; i ++) {
+        viewArr.push('view');
+      }
       return {
         ...state,
         style: action.style,
-        loading: false
+        loading: false,
+        viewArr: viewArr
       }
     case editSiteConstants.GETSTYLE_FAILURE :
       return {
       }
     case editSiteConstants.UPDATESTYLE:
+      console.log("updatestyle")
       return {
         ...state,
         style: action.style

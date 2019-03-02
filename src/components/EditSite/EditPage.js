@@ -2,6 +2,7 @@ import React from 'react';
 
 import PageSection from './sections/PageSection'
 
+
 class EditPage extends React.Component {
   constructor() {
     super();
@@ -18,12 +19,21 @@ class EditPage extends React.Component {
   }
 
   render() {
+    console.log(this.props)
     if(this.props.style) {
-      console.log(this.props.style);
       this.renderStyle();
       let sectionArr = [];
       for(let i = 0; i < this.props.style.sections.length; i ++) {
-        sectionArr.push(<PageSection key={i} style={this.props.style.sections[i]} pageSectionIndex={i} updateText={this.props.updateTextSection} />);
+        sectionArr.push(
+          <PageSection
+            key={i}
+            style={this.props.style.sections[i]}
+            pageSectionIndex={i}
+            updateText={this.props.updateTextSection}
+            viewArr={this.props.viewArr}
+            updateView={this.props.updateView}
+          />
+        );
       }
       let styles = {
         backgroundColor: this.props.style.background.color,

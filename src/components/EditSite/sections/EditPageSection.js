@@ -4,7 +4,6 @@ import { EditorState,
         ContentState } from 'draft-js';
 import htmlToDraft from 'html-to-draftjs';
 import { stateToHTML } from 'draft-js-export-html';
-// import { stateFromHTML } from 'draft-js-import-html';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import {Link} from 'react-router-dom';
 import TextSubsection from './TextSubsection';
@@ -49,7 +48,7 @@ class EditPageSection extends React.Component {
       htmlText += props.textSubsections[i].props.data.html;
     }
 
-    console.log(htmlText);
+    // console.log(htmlText);
     const blocksFromHTML = htmlToDraft(htmlText);
 
     const state = ContentState.createFromBlockArray(blocksFromHTML);
@@ -68,8 +67,6 @@ class EditPageSection extends React.Component {
     this.updateText = this.updateText.bind(this);
     // this.createHTML = this.createHTML.bind(this);
     this.onEditorStateChange = this.onEditorStateChange.bind(this);
-    this.myBlockRenderer = this.myBlockRenderer.bind(this)
-    this.myBlockStyleFunction = this.myBlockStyleFunction.bind(this);
   }
 
   updateText() {
@@ -79,30 +76,19 @@ class EditPageSection extends React.Component {
     let newHTML = stateToHTML(contentState, options);
     console.log(newHTML);
     this.props.updateText(index, newHTML);
+    this.props.updateView();
   }
 
   onEditorStateChange(editorState) {
+    console.log("change")
     this.setState({
       editorState
     });
   };
 
-  myBlockRenderer(contentBlock) {
-    // const type = contentBlock.getType();
-    // console.log(contentBlock)
-    // console.log(type)
-  }
-
-  myBlockStyleFunction(contentBlock) {
-    // console.log(this.state.editorState.getCurrentContent());
-    // console.log(contentBlock.getText());
-  }
-
-
-
   render() {
     return (
-      <div>
+      <div className="edit-page-section">
         <Editor
           ref={this.setEditor}
           wrapperClassName="demo-wrapper"
@@ -112,7 +98,7 @@ class EditPageSection extends React.Component {
           blockRendererFn={this.myBlockRenderer}
           blockStyleFn={this.myBlockStyleFunction}
         />
-        <div className="update cms-btn" onClick={this.updateText}>Update</div>
+        <div className="update-btn cms-btn" onClick={this.updateText}>Update</div>
       </div>
     )
   }

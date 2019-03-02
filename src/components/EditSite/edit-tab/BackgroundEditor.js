@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { CompactPicker } from 'react-color'
+
 class BackgroundEditor extends React.Component {
   constructor(props) {
     super(props);
@@ -7,14 +9,12 @@ class BackgroundEditor extends React.Component {
       backgroundOpen: false,
       marginsOpen: false,
       paddingsOpen: false,
-      // marginTop: props.style.margin[0],
-      // marginRight: props.style.margin[1],
-      // marginBottom: props.style.margin[2],
-      // marginLeft: props.style.margin[3],
+      colorOpen: false,
     }
     this.toggleBackgroundOpen = this.toggleBackgroundOpen.bind(this);
     this.toggleMarginsOpen = this.toggleMarginsOpen.bind(this);
     this.togglePaddingsOpen = this.togglePaddingsOpen.bind(this);
+    this.toggleColorOpen = this.toggleColorOpen.bind(this);
     this.updateMargin = this.updateMargin.bind(this);
     this.updatePadding = this.updatePadding.bind(this);
     this.updateBackgroundColor = this.updateBackgroundColor.bind(this);
@@ -35,6 +35,13 @@ class BackgroundEditor extends React.Component {
   togglePaddingsOpen() {
     this.setState({
       paddingsOpen: !this.state.paddingsOpen
+    })
+  }
+
+  toggleColorOpen() {
+    console.log("toggle color")
+    this.setState({
+      colorOpen: !this.state.colorOpen
     })
   }
 
@@ -65,6 +72,15 @@ class BackgroundEditor extends React.Component {
   updatePadding(event) {
     let style = this.props.style;
     let padding = this.props.style.padding;
+    for(let i = 0; i < padding.length; i ++) {
+      if(padding[i] === null) {
+        console.log("dis is nukk")
+        padding[i] = 0;
+      }
+      else {
+        console.log(padding[i])
+      }
+    }
     let updateVal = parseInt(event.target.value);
     if(event.target.name === "paddingTop") {
       padding = [updateVal, padding[1], padding[2], padding[3]];
@@ -83,12 +99,14 @@ class BackgroundEditor extends React.Component {
     }
     let backgroundJSON = this.props.style;
     backgroundJSON.padding = padding;
-    console.log(backgroundJSON);
     this.props.updateBackground(backgroundJSON);
   }
 
-  updateBackgroundColor(event) {
-
+  updateBackgroundColor(color) {
+    let backgroundJSON = this.props.style;
+    // let color = color.hex;
+    backgroundJSON.color = color.hex;
+    this.props.updateBackground(backgroundJSON);
   }
 
   postStyle() {
@@ -164,8 +182,15 @@ class BackgroundEditor extends React.Component {
                 </label>
               </div>
             </div>
+            <div className="color-editor-title background-options-title" onClick={this.toggleColorOpen}>
+              Color
+              <div className={this.state.colorOpen ? "editor-toggle-triangle open":"editor-toggle-triangle close"}></div>
+            </div>
+            <div className={this.state.colorOpen ? "color-controller-section open" : "color-controller-section close"}>
+              <CompactPicker color={this.props.style.color} onChangeComplete={this.updateBackgroundColor}/>
+            </div>
+          </div>
         </div>
-      </div>
     );
   }
 }

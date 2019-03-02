@@ -28,7 +28,7 @@ function addSection(sectionData) {
       });
 }
 
-function editSection( siteURL, sectionData) {
+function editSection(siteURL, sectionData) {
   let sectionDataObj = {
     sectionData
   }
@@ -44,13 +44,13 @@ function editSection( siteURL, sectionData) {
     body: JSON.stringify(sectionData)
   }
 
-
   let fetchURL = `/api/edit-section/` + siteURL
 
   return fetch(fetchURL, requestOptions)
       .then(handleResponse)
       .then(addSection => {
-        // console.log("done adding section")
+        console.log("done adding section")
+        return addSection;
       });
 }
 
