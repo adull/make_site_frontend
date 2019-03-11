@@ -32,6 +32,7 @@ class EditPage extends React.Component {
           />
         );
       }
+
       let styles = {
         backgroundColor: this.props.style.background.color,
         marginTop: this.props.style.background.margin[0],

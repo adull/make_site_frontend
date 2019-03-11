@@ -16,7 +16,9 @@ class EditSite extends React.Component {
     }
     this.props.getStyle(siteURL);
     this.updateTextSection = this.updateTextSection.bind(this);
+    this.updateTextSectionJSON = this.updateTextSectionJSON.bind(this);
     this.updateSiteBackground = this.updateSiteBackground.bind(this);
+
   }
 
   updateSiteBackground(backgroundJSON) {
@@ -30,10 +32,23 @@ class EditSite extends React.Component {
   }
 
   updateTextSection(index, text) {
+
     let oldPageStyle = JSON.parse(this.props.editSite.style.results.getStyle);
     let formattedText = text.replace(/["]+/g, '\'')
     oldPageStyle.sections[index].text[0].html = formattedText;
-    console.log(oldPageStyle);
+    console.log("this right here")
+    console.log(text);
+    this.props.editSection(this.state.siteURL, oldPageStyle);
+  }
+
+  updateTextSectionJSON(index, json) {
+    console.log(this.props.editSite.style.results.getStyle)
+    console.log(json)
+    let oldPageStyle = JSON.parse(this.props.editSite.style.results.getStyle);
+    console.log(oldPageStyle)
+    oldPageStyle.sections[index] = json;
+    // console.log("this fires")
+    // console.log(json)
     this.props.editSection(this.state.siteURL, oldPageStyle);
   }
 
@@ -43,7 +58,12 @@ class EditSite extends React.Component {
       let style = JSON.parse(this.props.editSite.style.results.getStyle);
       return (
         <div className="edit-site">
-          <EditTab style={style} updateBackground={this.updateSiteBackground} postBackground={this.props.postSiteBackground}/>
+          <EditTab
+            style={style}
+            updateBackground={this.updateSiteBackground}
+            postBackground={this.props.postSiteBackground}
+            updateTextSection={this.updateTextSectionJSON}
+          />
           <EditPage style={style} updateTextSection={this.updateTextSection} viewArr={this.props.editSite.viewArr} updateView={this.props.updateView}/>
         </div>
       )

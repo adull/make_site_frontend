@@ -26,8 +26,14 @@ class EditTab extends React.Component {
           <button className="cms-btn" onClick={this.toggleShow}>Hide edit tab</button>
         </div>
         <div className="edit-tab-controls">
-          <BackgroundEditor style={this.props.style.background} updateBackground={this.props.updateBackground} postBackground={this.props.postBackground}/>
-          <EditTabSections sections={this.props.style.sections}/>
+          <BackgroundEditor
+            style={this.props.style.background}
+            updateBackground={this.props.updateBackground}
+            postBackground={this.props.postBackground}
+          />
+          <EditTabSections
+            sections={this.props.style.sections}
+            updateTextSection={this.props.updateTextSection}/>
         </div>
         <div className="show-btn" onClick={this.toggleShow}>Show edit tab</div>
 

@@ -67,7 +67,7 @@ export function editSite(state = initialState, action) {
       for(var i = 0; i < sections.length; i ++) {
         viewArr.push('view');
       }
-      console.log(action.style)
+      // console.log(action.style)
       return {
         ...state,
         style: action.style,
@@ -78,7 +78,7 @@ export function editSite(state = initialState, action) {
       return {
       }
     case editSiteConstants.UPDATESTYLE:
-      console.log("updatestyle")
+      // console.log("updatestyle")
       return {
         ...state,
         style: action.style

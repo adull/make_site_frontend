@@ -24,7 +24,7 @@ function addSection(sectionData) {
   return fetch(fetchURL, requestOptions)
       .then(handleResponse)
       .then(addSection => {
-        console.log("done adding section")
+        // console.log("done adding section")
       });
 }
 
@@ -32,7 +32,7 @@ function editSection(siteURL, sectionData) {
   let sectionDataObj = {
     sectionData
   }
-  
+
   let test = sectionData.sections[1].text[0].html;
   // console.log(test)
   const requestOptions = {
@@ -47,7 +47,7 @@ function editSection(siteURL, sectionData) {
   return fetch(fetchURL, requestOptions)
       .then(handleResponse)
       .then(addSection => {
-        console.log("done adding section")
+        // console.log("done adding section")
         return addSection;
       });
 }

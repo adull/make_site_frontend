@@ -69,6 +69,69 @@
             }
           }
         }
+        .edit-sections-wrapper {
+          .edit-sections-title {
+            display: flex;
+            align-items: center;
+          }
+          .edit-sections {
+            margin-left: 10px;
+            &.close {
+              display: none;
+            }
+            &.open {
+              display: block;
+            }
+            .edit-tab-section {
+              .edit-tab-section-title {
+                display: flex;
+                align-items: center;
+              }
+              .edit-tab-section-controls {
+                &.open {
+                  display: block;
+                }
+                &.close {
+                  display: none;
+                }
+              }
+              .background-options-title {
+                display: flex;
+                align-items: center;
+              }
+              .margins-editor-title {
+                margin-left: 10px;
+              }
+              .paddings-editor-title {
+                margin-left: 10px;
+              }
+              .margin-controller {
+                margin-left: 10px;
+              }
+              .padding-controller {
+                margin-left: 10px;
+              }
+              .margin-controller-section {
+                margin-left: 10px;
+                &.open {
+                  display: block;
+                }
+                &.close {
+                  display: none;
+                }
+              }
+              .padding-controller-section {
+                margin-left: 10px;
+                &.open {
+                  display: block;
+                }
+                &.close {
+                  display: none;
+                }
+              }
+            }
+          }
+        }
         .editor-toggle-triangle {
           width: 5px;
           height: 5px;
