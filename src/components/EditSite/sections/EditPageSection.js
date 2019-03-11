@@ -74,13 +74,13 @@ class EditPageSection extends React.Component {
     let contentState = this.state.editorState.getCurrentContent();
     // this applies inline styles.
     let newHTML = stateToHTML(contentState, options);
+    console.log(index)
     console.log(newHTML);
     this.props.updateText(index, newHTML);
     this.props.updateView();
   }
 
   onEditorStateChange(editorState) {
-    console.log("change")
     this.setState({
       editorState
     });

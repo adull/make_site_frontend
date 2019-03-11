@@ -33,6 +33,7 @@ class EditSite extends React.Component {
     let oldPageStyle = JSON.parse(this.props.editSite.style.results.getStyle);
     let formattedText = text.replace(/["]+/g, '\'')
     oldPageStyle.sections[index].text[0].html = formattedText;
+    console.log(oldPageStyle);
     this.props.editSection(this.state.siteURL, oldPageStyle);
   }
 

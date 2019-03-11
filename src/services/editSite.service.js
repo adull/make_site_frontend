@@ -32,9 +32,7 @@ function editSection(siteURL, sectionData) {
   let sectionDataObj = {
     sectionData
   }
-  // console.log(sectionDataObj);
-  // console.log("edit section")
-  // let test = sectionDataObj.sectionData.sections[1].text[0].html;
+  
   let test = sectionData.sections[1].text[0].html;
   // console.log(test)
   const requestOptions = {

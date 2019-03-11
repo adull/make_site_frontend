@@ -71,7 +71,17 @@ class PageSection extends React.Component {
         <div className="edit-btn" style={editBtnStyle} onClick={this.updateViewToEdit}>
           Edit
         </div>
-        {isView ? <ViewPageSection textSubsections={textSubsectionsArr} updateViewTo={this.props.updateView}/> : <EditPageSection textSubsections={textSubsectionsArr} updateText={this.updateText} updateView={this.updateViewToView} />}
+        {isView ?
+          <ViewPageSection
+            pageSectionIndex = {this.props.pageSectionIndex}
+            textSubsections={textSubsectionsArr}
+            updateViewTo={this.props.updateView}/> :
+          <EditPageSection
+            pageSectionIndex = {this.props.pageSectionIndex}
+            textSubsections={textSubsectionsArr}
+            updateText={this.updateText}
+            updateView={this.updateViewToView} />
+        }
       </div>
     );
   }

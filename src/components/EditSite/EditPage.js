@@ -13,13 +13,10 @@ class EditPage extends React.Component {
   }
 
   renderStyle() {
-    // console.log
-    // return "haha";
-    // console.log(this.props.style);
+
   }
 
   render() {
-    console.log(this.props)
     if(this.props.style) {
       this.renderStyle();
       let sectionArr = [];

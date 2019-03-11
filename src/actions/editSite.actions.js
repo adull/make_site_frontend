@@ -41,7 +41,8 @@ function editSection(siteURL, editData) {
     editSiteService.editSection(siteURL, editData)
       .then (
         edit => {
-          dispatch(success());
+          console.log(editData);
+          dispatch(success(editData));
         },
         error => {
           dispatch(failure(error.toString()));
