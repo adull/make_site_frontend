@@ -15,10 +15,27 @@ class EditSite extends React.Component {
       // style: this.props.getStyle(siteURL)
     }
     this.props.getStyle(siteURL);
+    this.addSection = this.addSection.bind(this);
     this.updateTextSection = this.updateTextSection.bind(this);
     this.updateTextSectionJSON = this.updateTextSectionJSON.bind(this);
     this.updateSiteBackground = this.updateSiteBackground.bind(this);
 
+  }
+
+  addSection(sectionType, sectionContent) {
+    // console.log(this.state)
+    let style = JSON.parse(this.props.editSite.style.results.getStyle);
+    let formattedContent = sectionContent.replace(/"/g, "'");
+    let newSection = {
+      sectionType: sectionType,
+      text: [{
+        margin: [0, 0, 0, 0],
+        padding: [0, 0, 0, 0],
+        html: formattedContent,
+      }]
+    }
+    style.sections.push(newSection);
+    this.props.addSection(this.state.siteURL, style)
   }
 
   updateSiteBackground(backgroundJSON) {
@@ -34,7 +51,7 @@ class EditSite extends React.Component {
   updateTextSection(index, text) {
 
     let oldPageStyle = JSON.parse(this.props.editSite.style.results.getStyle);
-    let formattedText = text.replace(/["]+/g, '\'')
+    let formattedText = text.replace(/"/g, "'");
     oldPageStyle.sections[index].text[0].html = formattedText;
     console.log("this right here")
     console.log(text);
@@ -60,11 +77,16 @@ class EditSite extends React.Component {
         <div className="edit-site">
           <EditTab
             style={style}
+            addSection={this.addSection}
             updateBackground={this.updateSiteBackground}
             postBackground={this.props.postSiteBackground}
             updateTextSection={this.updateTextSectionJSON}
           />
-          <EditPage style={style} updateTextSection={this.updateTextSection} viewArr={this.props.editSite.viewArr} updateView={this.props.updateView}/>
+          <EditPage
+            style={style}
+            updateTextSection={this.updateTextSection}
+            viewArr={this.props.editSite.viewArr}
+            updateView={this.props.updateView}/>
         </div>
       )
     }
@@ -85,7 +107,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    addSection: () => { dispatch(editSiteActions.editSection()) },
+    addSection: (siteURL, style) => { dispatch(editSiteActions.addSection(siteURL, style)) },
     editSection: (siteURL, index, text) => { dispatch(editSiteActions.editSection(siteURL, index, text)) },
     getStyle: (url) => { dispatch(editSiteActions.getStyle(url)) },
     updateSiteBackground: (style) => { dispatch(editSiteActions.updateSiteBackground(style)) },

@@ -1,9 +1,4 @@
 import { authHeader } from '../helpers';
-// import htmlToJson from 'htmlToJson';
-// var htmlToJson = require('../lib/htmlToJson');
-// import htmlToJson from 'htmlToJson';
-
-
 
 export const editSiteService = {
   addSection,
@@ -11,15 +6,15 @@ export const editSiteService = {
   getStyle
 }
 
-function addSection(sectionData) {
+function addSection(siteURL, style) {
+  console.log(style);
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json'},
-    body: sectionData
+    body: JSON.stringify(style)
   }
 
-  let siteURL = sectionData.siteURL
-  let fetchURL = `/api/add-section/ + siteURL`;
+  let fetchURL = `/api/add-section/` + siteURL;
 
   return fetch(fetchURL, requestOptions)
       .then(handleResponse)

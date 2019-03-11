@@ -1,6 +1,6 @@
 import React from 'react';
 import EditTabSection from './EditTabSection';
-import AddSection from './AddSection';
+import AddSection from './add-section/AddSection';
 
 class EditTabSections extends React.Component {
   constructor(props) {
@@ -38,7 +38,7 @@ class EditTabSections extends React.Component {
         </div>
         <div className={this.state.pageSectionsOpen ? "edit-sections open" : "edit-sections close"}>
           {tabSectionArr}
-          <AddSection />
+          <AddSection addSection={this.props.addSection} />
         </div>
       </div>
     );

@@ -12,11 +12,11 @@ export const editSiteActions = {
   updateView
 }
 
-function addSection(sectionData) {
+function addSection(siteURL, style) {
   return dispatch => {
-    dispatch(request(sectionData));
+    dispatch(request(siteURL, style));
 
-    editSiteService.addSection(sectionData)
+    editSiteService.addSection(siteURL, style)
       .then (
         edit => {
           dispatch(success());
@@ -28,7 +28,7 @@ function addSection(sectionData) {
       )
   }
 
-  function request(sectionData) { return { type: editSiteConstants.ADDSECTION_REQUEST, sectionData }};
+  function request(siteURL, style) { return { type: editSiteConstants.ADDSECTION_REQUEST, siteURL, style }};
   function success(sectionData) { return { type: editSiteConstants.ADDSECTION_SUCCESS, sectionData }};
   function failure(error) { return { type: editSiteConstants.ADDSECTION_FAILURE, error }};
 }

@@ -14,7 +14,6 @@ function camelCaseToDash( myStr ) {
 
 let options = {
   inlineStyleFn: (styles) => {
-    console.log(styles)
     let fuck = styles.filter((value) => console.log(value));
 
     let colorKey = 'color-';
@@ -33,7 +32,6 @@ let options = {
     if(fontSize) {
       style.style.fontSize = fontSize.replace(fontSizeKey, '');
     }
-    console.log(style)
     return style;
   },
 };
