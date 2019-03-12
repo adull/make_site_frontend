@@ -13,7 +13,7 @@ function newPage(newPageData) {
     body: JSON.stringify(newPageData)
   };
 
-  return fetch(`/api/new-page`, requestOptions)
+  return fetch(`/cms-api/new-page`, requestOptions)
       .then(handleResponse)
       .then(newPage => {
         // console.log("finished making new page")
@@ -26,7 +26,7 @@ function getPages() {
     headers: authHeader()
   }
 
-  return fetch(`/api/get-my-pages`, requestOptions)
+  return fetch(`/cms-api/get-my-pages`, requestOptions)
       .then(handleResponse)
       .then(pages => {
         // console.log(pages);
@@ -40,7 +40,7 @@ function deletePage(page) {
     headers: authHeader()
   }
 
-  return fetch(`/api/delete-page/` + page, requestOptions)
+  return fetch(`/cms-api/delete-page/` + page, requestOptions)
       .then(handleResponse)
       .then(deletePage => {
         getPages();

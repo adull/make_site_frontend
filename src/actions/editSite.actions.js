@@ -6,6 +6,7 @@ import { editSiteService } from '../services';
 
 export const editSiteActions = {
   addSection,
+  deleteSection,
   editSection,
   getStyle,
   updateSiteBackground,
@@ -31,6 +32,26 @@ function addSection(siteURL, style) {
   function request(siteURL, style) { return { type: editSiteConstants.ADDSECTION_REQUEST, siteURL, style }};
   function success(sectionData) { return { type: editSiteConstants.ADDSECTION_SUCCESS, sectionData }};
   function failure(error) { return { type: editSiteConstants.ADDSECTION_FAILURE, error }};
+}
+
+function deleteSection(siteURL, sectionIndex) {
+  return dispatch => {
+    dispatch(request(siteURL, sectionIndex));
+
+    editSiteService.deleteSection(siteURL, sectionIndex)
+      .then (
+        edit => {
+          dispatch(success());
+        },
+        error => {
+          dispatch(failure(error.toString()));
+          dispatch(alertActions.error(error.toString()));
+        }
+      )
+  }
+  function request(siteURL, sectionIndex) { return { type: editSiteConstants.DELETSECTION_REQUEST, siteURL, sectionIndex }};
+  function success(sectionData) { return { type: editSiteConstants.DELETESECTION_SUCCESS, sectionData }};
+  function failure(error) { return { type: editSiteConstants.DELETESECTION_FAILURE, error }};
 }
 
 function editSection(siteURL, editData) {

@@ -16,6 +16,7 @@ class EditSite extends React.Component {
     }
     this.props.getStyle(siteURL);
     this.addSection = this.addSection.bind(this);
+    this.deleteSection = this.deleteSection.bind(this);
     this.updateTextSection = this.updateTextSection.bind(this);
     this.updateTextSectionJSON = this.updateTextSectionJSON.bind(this);
     this.updateSiteBackground = this.updateSiteBackground.bind(this);
@@ -38,6 +39,20 @@ class EditSite extends React.Component {
     this.props.addSection(this.state.siteURL, style)
   }
 
+  deleteSection(index) {
+    // console.log(this.props)
+    let pageStyle = JSON.parse(this.props.editSite.style.results.getStyle);
+    let sections = pageStyle.sections;
+    console.log(sections);
+    sections.splice(index, 1);
+    console.log(sections);
+    pageStyle.sections = sections;
+    // let pageStyleString = JSON.stringify(pageStyle);
+    console.log(pageStyle)
+    // console.log(sections)
+    this.props.editSection(this.state.siteURL, pageStyle);
+  }
+
   updateSiteBackground(backgroundJSON) {
     let editSiteStyle = this.props.editSite.style.results.getStyle;
     let editSiteStyleJSON = JSON.parse(editSiteStyle);
@@ -49,12 +64,10 @@ class EditSite extends React.Component {
   }
 
   updateTextSection(index, text) {
-
     let oldPageStyle = JSON.parse(this.props.editSite.style.results.getStyle);
     let formattedText = text.replace(/"/g, "'");
     oldPageStyle.sections[index].text[0].html = formattedText;
-    console.log("this right here")
-    console.log(text);
+    console.log(oldPageStyle);
     this.props.editSection(this.state.siteURL, oldPageStyle);
   }
 
@@ -78,6 +91,7 @@ class EditSite extends React.Component {
           <EditTab
             style={style}
             addSection={this.addSection}
+            deleteSection={this.deleteSection}
             updateBackground={this.updateSiteBackground}
             postBackground={this.props.postSiteBackground}
             updateTextSection={this.updateTextSectionJSON}
@@ -108,6 +122,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     addSection: (siteURL, style) => { dispatch(editSiteActions.addSection(siteURL, style)) },
+    deleteSection: (siteURL, sectionIndex) => { dispatch(editSiteActions.deleteSection(siteURL, sectionIndex)) },
     editSection: (siteURL, index, text) => { dispatch(editSiteActions.editSection(siteURL, index, text)) },
     getStyle: (url) => { dispatch(editSiteActions.getStyle(url)) },
     updateSiteBackground: (style) => { dispatch(editSiteActions.updateSiteBackground(style)) },

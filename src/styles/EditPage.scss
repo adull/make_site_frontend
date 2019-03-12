@@ -129,6 +129,11 @@
                   display: none;
                 }
               }
+              .delete-section {
+                cursor: pointer;
+                margin-left: 10px;
+                color: red;
+              }
             }
           }
         }

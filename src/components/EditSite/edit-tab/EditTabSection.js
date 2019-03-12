@@ -1,4 +1,5 @@
 import React from 'react';
+import DeleteSection from './DeleteSection'
 
 class EditTabSection extends React.Component {
   constructor(props) {
@@ -133,6 +134,7 @@ class EditTabSection extends React.Component {
               </label>
             </div>
           </div>
+          <DeleteSection deleteSection={this.props.deleteSection} index={this.props.index}/>
         </div>
       </div>
     )

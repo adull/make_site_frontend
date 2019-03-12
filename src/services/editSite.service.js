@@ -14,7 +14,7 @@ function addSection(siteURL, style) {
     body: JSON.stringify(style)
   }
 
-  let fetchURL = `/api/add-section/` + siteURL;
+  let fetchURL = `/cms-api/add-section/` + siteURL;
 
   return fetch(fetchURL, requestOptions)
       .then(handleResponse)
@@ -23,12 +23,26 @@ function addSection(siteURL, style) {
       });
 }
 
+function deleteSection(siteURL, sectionIndex) {
+  const requestOptions = {
+    method: 'POST',
+    headers: authHeader()
+  }
+
+  return fetch(`/cms-api/delete-section/` + siteURL + '/' + sectionIndex, requestOptions)
+    .then(handleResponse)
+    .then(deleteSection => {
+      return;
+    });
+
+}
+
 function editSection(siteURL, sectionData) {
   let sectionDataObj = {
     sectionData
   }
 
-  let test = sectionData.sections[1].text[0].html;
+  // let test = sectionData.sections[0].text[0].html;
   // console.log(test)
   const requestOptions = {
     method: 'POST',
@@ -37,7 +51,7 @@ function editSection(siteURL, sectionData) {
     body: JSON.stringify(sectionData)
   }
 
-  let fetchURL = `/api/edit-section/` + siteURL
+  let fetchURL = `/cms-api/edit-section/` + siteURL
 
   return fetch(fetchURL, requestOptions)
       .then(handleResponse)
@@ -53,7 +67,7 @@ function getStyle(siteURL) {
     headers: authHeader()
   };
 
-  return fetch(`/api/get-style/` + siteURL, requestOptions)
+  return fetch(`/cms-api/get-style/` + siteURL, requestOptions)
     .then(handleResponse)
     .then(style => {
       return style;

@@ -20,7 +20,7 @@ class EditTab extends React.Component {
   }
 
   render() {
-    console.log(this.props.style)
+    // console.log(this.props.style)
     return (
       <div className={"edit-tab " + (this.state.show ? "show" : "hide")}>
         <div className="edit-tab-header">
@@ -35,6 +35,7 @@ class EditTab extends React.Component {
           <EditTabSections
             sections={this.props.style.sections}
             addSection={this.props.addSection}
+            deleteSection={this.props.deleteSection}
             updateTextSection={this.props.updateTextSection}/>
         </div>
         <div className="show-btn" onClick={this.toggleShow}>Show edit tab</div>

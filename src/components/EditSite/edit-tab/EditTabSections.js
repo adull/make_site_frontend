@@ -24,6 +24,7 @@ class EditTabSections extends React.Component {
       tabSectionArr.push(
         <EditTabSection
           sectionData={this.props.sections[i]}
+          deleteSection={this.props.deleteSection}
           updateTextSection = {this.props.updateTextSection}
           index={i}
           key={i}

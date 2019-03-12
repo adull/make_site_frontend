@@ -18,7 +18,7 @@ function login(user) {
     };
 
     // return fetch(`${config.apiUrl}/user-login`, requestOptions)
-    return fetch(`/api/user-login`, requestOptions)
+    return fetch(`/cms-api/user-login`, requestOptions)
         .then(handleResponse)
         .then(user => {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
@@ -40,7 +40,7 @@ function getAll() {
     };
 
     // return fetch(`${config.apiUrl}/get-users`, requestOptions).then(handleResponse);
-    return fetch(`/api/get-users`, requestOptions).then(handleResponse);
+    return fetch(`/cms-api/get-users`, requestOptions).then(handleResponse);
 }
 
 function getById(id) {
@@ -50,7 +50,7 @@ function getById(id) {
     };
 
     // return fetch(`${config.apiUrl}/get-user/${id}`, requestOptions).then(handleResponse);
-    return fetch(`/api/get-user/${id}`, requestOptions).then(handleResponse);
+    return fetch(`/cms-api/get-user/${id}`, requestOptions).then(handleResponse);
 }
 
 function register(username, password) {
@@ -60,7 +60,7 @@ function register(username, password) {
         body: JSON.stringify(username, password)
     };
 
-    return fetch('/api/register', requestOptions).then(handleResponse);
+    return fetch('/cms-api/register', requestOptions).then(handleResponse);
 }
 
 function update(user) {
@@ -71,7 +71,7 @@ function update(user) {
     };
 
     // return fetch(`${config.apiUrl}/users/${user.id}`, requestOptions).then(handleResponse);
-    return fetch(`/api/users/${user.id}`, requestOptions).then(handleResponse);
+    return fetch(`/cms-api/users/${user.id}`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {
