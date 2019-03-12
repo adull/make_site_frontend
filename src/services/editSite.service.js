@@ -20,6 +20,7 @@ function addSection(siteURL, style) {
       .then(handleResponse)
       .then(addSection => {
         // console.log("done adding section")
+        return addSection;
       });
 }
 
@@ -32,7 +33,8 @@ function deleteSection(siteURL, sectionIndex) {
   return fetch(`/cms-api/delete-section/` + siteURL + '/' + sectionIndex, requestOptions)
     .then(handleResponse)
     .then(deleteSection => {
-      return;
+      console.log(deleteSection)
+      return deleteSection;
     });
 
 }

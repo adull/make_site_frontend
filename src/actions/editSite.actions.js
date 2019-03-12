@@ -19,8 +19,8 @@ function addSection(siteURL, style) {
 
     editSiteService.addSection(siteURL, style)
       .then (
-        edit => {
-          dispatch(success());
+        addedData => {
+          dispatch(success(addedData));
         },
         error => {
           dispatch(failure(error.toString()));

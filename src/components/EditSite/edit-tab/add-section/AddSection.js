@@ -33,8 +33,8 @@ class AddSection extends React.Component {
 
   addSection(event) {
     event.preventDefault();
-    console.log(this)
-    this.props.addSection(this.state.sectionToAdd, this.state.contentToAdd);
+    let addSection = this.props.addSection(this.state.sectionToAdd, this.state.contentToAdd);
+    this.toggleModal();
 
   }
 
@@ -62,10 +62,14 @@ class AddSection extends React.Component {
               <option value="image">Image</option>
             </select>
             {this.state.sectionToAdd === 'text' ?
-              <AddSectionTextEditor updateText={this.updateText} /> :
-              <AddSectionImageAdder />
+              <div className="text-editor-wrapper">
+                <AddSectionTextEditor updateText={this.updateText} />
+              </div> :
+              <div className="image-adder-wrapper">
+                <AddSectionImageAdder />
+              </div>
             }
-            <input type="submit" value="Submit" />
+            <input className="cms-btn" type="submit" value="Submit" />
           </form>
         </Modal>
       </div>

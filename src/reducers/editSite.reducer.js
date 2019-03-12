@@ -14,12 +14,31 @@ export function editSite(state = initialState, action) {
         viewArr: newViewArr
       }
     case editSiteConstants.ADDSECTION_REQUEST :
+    // console.log("add section request");
+
+      let addSectionStyle = {
+        getStyle: JSON.stringify(action.style)
+      };
+
+    console.log(addSectionStyle)
       return {
         ...state,
+        results: addSectionStyle,
       };
     case editSiteConstants.ADDSECTION_SUCCESS :
+      console.log(action.sectionData.body);
+      let addSectionSuccessStyle = {
+        getStyle: action.sectionData.body
+      };
+      let resultsStyle = {
+        success: true,
+        results: addSectionSuccessStyle
+      }
+
+      console.log(resultsStyle)
       return {
         ...state,
+        style: resultsStyle
       };
     case editSiteConstants.ADDSECTION_FAILURE :
       return {
@@ -43,10 +62,12 @@ export function editSite(state = initialState, action) {
       let getStyle = {
         getStyle: JSON.stringify(action.editData)
       };
+      console.log(getStyle);
       let editSuccessJSON = {
         success: true,
         results: getStyle
       }
+      console.log(editSuccessJSON);
       return {
         ...state,
         style: editSuccessJSON

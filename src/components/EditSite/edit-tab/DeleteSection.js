@@ -18,8 +18,9 @@ class DeleteSection extends React.Component {
   }
 
   deleteSection() {
-    console.log(this.props.index);
-    this.props.deleteSection(this.props.index);
+    // console.log(this.props.index);
+    let deletion = this.props.deleteSection(this.props.index);
+    console.log(deletion);
   }
 
   render() {
@@ -28,7 +29,7 @@ class DeleteSection extends React.Component {
         Delete Section
         <Modal show={this.state.deleteModalOpen} onClose={this.toggleDeleteModal}>
           <button className="cms-btn" onClick={this.deleteSection}>
-            Delete Modal
+            Delete Section
           </button>
         </Modal>
       </div>

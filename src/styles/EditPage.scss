@@ -135,6 +135,42 @@
                 color: red;
               }
             }
+            .add-section-wrapper {
+
+              .add-section-modal-title {
+                font-size: 24px;
+                text-align: center;
+              }
+              .add-section-options {
+                margin: 30px 0px 15px;
+                label {
+                  position: relative;
+                  bottom: 15px;
+                  margin: 15px 0px;
+                }
+                .section-type-select {
+                  bottom: 15px;
+                  position: relative;
+                  margin-left: 15px;
+                }
+                .text-editor-wrapper {
+                  border: 1px solid black;
+                }
+                .image-adder-wrapper {
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  .add-section-image-adder {
+                    .image-preview {
+                      img {
+                        width: 100%;
+                      }
+                    }
+                  }
+                }
+              }
+
+            }
           }
         }
         .editor-toggle-triangle {

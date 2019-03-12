@@ -20,7 +20,6 @@ class EditSite extends React.Component {
     this.updateTextSection = this.updateTextSection.bind(this);
     this.updateTextSectionJSON = this.updateTextSectionJSON.bind(this);
     this.updateSiteBackground = this.updateSiteBackground.bind(this);
-
   }
 
   addSection(sectionType, sectionContent) {
@@ -40,16 +39,10 @@ class EditSite extends React.Component {
   }
 
   deleteSection(index) {
-    // console.log(this.props)
     let pageStyle = JSON.parse(this.props.editSite.style.results.getStyle);
     let sections = pageStyle.sections;
-    console.log(sections);
     sections.splice(index, 1);
-    console.log(sections);
     pageStyle.sections = sections;
-    // let pageStyleString = JSON.stringify(pageStyle);
-    console.log(pageStyle)
-    // console.log(sections)
     this.props.editSection(this.state.siteURL, pageStyle);
   }
 
@@ -67,23 +60,16 @@ class EditSite extends React.Component {
     let oldPageStyle = JSON.parse(this.props.editSite.style.results.getStyle);
     let formattedText = text.replace(/"/g, "'");
     oldPageStyle.sections[index].text[0].html = formattedText;
-    console.log(oldPageStyle);
     this.props.editSection(this.state.siteURL, oldPageStyle);
   }
 
   updateTextSectionJSON(index, json) {
-    console.log(this.props.editSite.style.results.getStyle)
-    console.log(json)
     let oldPageStyle = JSON.parse(this.props.editSite.style.results.getStyle);
-    console.log(oldPageStyle)
     oldPageStyle.sections[index] = json;
-    // console.log("this fires")
-    // console.log(json)
     this.props.editSection(this.state.siteURL, oldPageStyle);
   }
 
   render() {
-    // console.log(this.props)
     if(this.props.editSite.style) {
       let style = JSON.parse(this.props.editSite.style.results.getStyle);
       return (
