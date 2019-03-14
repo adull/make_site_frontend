@@ -6,6 +6,7 @@ import { editSiteService } from '../services';
 
 export const editSiteActions = {
   addSection,
+  addImageSection,
   deleteSection,
   editSection,
   getStyle,
@@ -14,6 +15,8 @@ export const editSiteActions = {
 }
 
 function addSection(siteURL, style) {
+  console.log("in actions - add regular section")
+  // console.log(style);
   return dispatch => {
     dispatch(request(siteURL, style));
 
@@ -32,6 +35,31 @@ function addSection(siteURL, style) {
   function request(siteURL, style) { return { type: editSiteConstants.ADDSECTION_REQUEST, siteURL, style }};
   function success(sectionData) { return { type: editSiteConstants.ADDSECTION_SUCCESS, sectionData }};
   function failure(error) { return { type: editSiteConstants.ADDSECTION_FAILURE, error }};
+}
+
+function addImageSection(siteURL, hash, image, style) {
+  console.log(style);
+  console.log("in actions - add image section")
+  return dispatch => {
+    console.log("style")
+    console.log(style);
+    dispatch(request(siteURL, hash, image, style));
+
+    editSiteService.addImageSection(siteURL, hash, image, style)
+    .then(
+      addedData => {
+        dispatch(success(addedData));
+      },
+      error => {
+        dispatch(failure(error.toString()));
+        dispatch(alertActions.error(error.toString()));
+      }
+    )
+  }
+
+  function request(siteURL, hash, image, style) { return {type: editSiteConstants.ADDIMAGESECTION_REQUEST, siteURL, hash, image, style }};
+  function success(sectionData) { return { type: editSiteConstants.ADDIMAGESECTION_SUCCESS, sectionData }};
+  function failure(error) { return { type: editSiteConstants.ADDIMAGESECTION_FAILURE, error }};
 }
 
 function deleteSection(siteURL, sectionIndex) {

@@ -35,6 +35,7 @@ class EditTab extends React.Component {
           <EditTabSections
             sections={this.props.style.sections}
             addSection={this.props.addSection}
+            addImageSection={this.props.addImageSection}
             deleteSection={this.props.deleteSection}
             updateTextSection={this.props.updateTextSection}/>
         </div>

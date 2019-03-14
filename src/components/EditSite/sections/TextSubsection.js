@@ -17,6 +17,7 @@ class TextSubsection extends React.Component {
       paddingBottom: this.props.data.padding[2],
       paddingLeft: this.props.data.padding[3],
     }
+    // console.log(data.html)
     return (
       <span style={styles} dangerouslySetInnerHTML={createMarkup(data.html)} />
 

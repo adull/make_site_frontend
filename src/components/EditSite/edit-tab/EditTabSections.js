@@ -39,7 +39,10 @@ class EditTabSections extends React.Component {
         </div>
         <div className={this.state.pageSectionsOpen ? "edit-sections open" : "edit-sections close"}>
           {tabSectionArr}
-          <AddSection addSection={this.props.addSection} />
+          <AddSection
+            addSection={this.props.addSection}
+            addImageSection={this.props.addImageSection}
+          />
         </div>
       </div>
     );
