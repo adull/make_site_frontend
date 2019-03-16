@@ -54,6 +54,7 @@ function addImageSection(siteURL, imageID, image, style) {
   return fetch(`/cms-api/add-image-section/` + siteURL, requestOptions)
     .then(handleResponse)
     .then(addImageSection => {
+      console.log(addImageSection);
       return addImageSection;
     });
 }

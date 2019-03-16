@@ -2,6 +2,7 @@ import React from 'react';
 
 class ImageSubsection extends React.Component {
   render() {
+    console.log("does this even render")
     let data = this.props.data;
     let styles = {
       marginTop: data.margin[0],

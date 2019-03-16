@@ -20,10 +20,31 @@ export function editSite(state = initialState, action) {
         getStyle: JSON.stringify(action.style)
       };
 
-    console.log(addSectionStyle)
+    // console.log(addSectionStyle)
       return {
         ...state,
         results: addSectionStyle,
+      };
+    case editSiteConstants.ADDIMAGESECTION_REQUEST :
+      return {
+        ...state,
+        loading: true
+      }
+    case editSiteConstants.ADDIMAGESECTION_SUCCESS :
+      // console.log(action.sectionData.body);
+      let addImageSectionStyleBody = action.sectionData.body;
+      console.log(addImageSectionStyleBody);
+      let addImageSectionSuccessStyle = {
+        getStyle: addImageSectionStyleBody
+      }
+
+      let addImageResultsStyle = {
+        success: true,
+        results: addImageSectionSuccessStyle
+      }
+      return {
+        ...state,
+        style: addImageResultsStyle
       };
     case editSiteConstants.ADDSECTION_SUCCESS :
       console.log(action.sectionData.body);
