@@ -5,7 +5,7 @@ class EditPageImageSection extends React.Component {
     super(props);
     let imageHTML = props.textSubsections[0].props.data.html;
     let imageSrc = imageHTML.match(/'([^']+)'/)[1];
-    console.log(imageHTML);
+    // console.log(imageHTML);
     var regExp = /\(.*?\)/g;
     var matches = imageHTML.match(regExp);
     let tempArr = [];
@@ -23,10 +23,6 @@ class EditPageImageSection extends React.Component {
     for(let k = 0; k < transformVals.length; k ++) {
       transformVals[k] = transformVals[k].replace('deg', '');
     }
-
-    console.log(transformVals)
-
-
 
     this.state = {
       skewX: transformVals[0],
@@ -60,6 +56,7 @@ class EditPageImageSection extends React.Component {
      // console.log(this.props)
      console.log(styleString);
     this.props.updateText(this.props.pageSectionIndex, styleString);
+    this.props.updateView();
 
 
   }

@@ -21,6 +21,7 @@ class EditSite extends React.Component {
     this.updateTextSection = this.updateTextSection.bind(this);
     this.updateTextSectionJSON = this.updateTextSectionJSON.bind(this);
     this.updateSiteBackground = this.updateSiteBackground.bind(this);
+    this.updateStyle = this.updateStyle.bind(this);
   }
 
   addSection(sectionType, sectionContent) {
@@ -79,7 +80,13 @@ class EditSite extends React.Component {
     let oldPageStyle = JSON.parse(this.props.editSite.style.results.getStyle);
     let formattedText = text.replace(/"/g, "'");
     oldPageStyle.sections[index].text[0].html = formattedText;
+    // console.log(oldPageStyle)
     this.props.editSection(this.state.siteURL, oldPageStyle);
+  }
+
+  updateStyle() {
+    let siteStyle = this.props.editSite.style.results.getStyle;
+    this.props.editSection(this.state.siteURL, JSON.parse(siteStyle));
   }
 
   updateTextSectionJSON(index, json) {
@@ -101,6 +108,7 @@ class EditSite extends React.Component {
             updateBackground={this.updateSiteBackground}
             postBackground={this.props.postSiteBackground}
             updateTextSection={this.updateTextSectionJSON}
+            updateStyle={this.updateStyle}
           />
           <EditPage
             style={style}

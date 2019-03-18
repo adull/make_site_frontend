@@ -103,16 +103,13 @@ export function editSite(state = initialState, action) {
         loading: true
       }
     case editSiteConstants.GETSTYLE_SUCCESS :
-    // console.log(action.style)
-    //   console.log(action.style.results.getStyle);
+      action.style.results.getStyle = action.style.results.getStyle.replace(/\n/g, '');
       let jsonStyle = JSON.parse(action.style.results.getStyle)
       let sections = jsonStyle.sections;
       let viewArr = [];
-      // console.log(sections)
       for(var i = 0; i < sections.length; i ++) {
         viewArr.push('view');
       }
-      // console.log(action.style)
       return {
         ...state,
         style: action.style,

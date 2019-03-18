@@ -11,12 +11,17 @@ class EditTab extends React.Component {
     }
 
     this.toggleShow = this.toggleShow.bind(this);
+    this.updateStyle = this.updateStyle.bind(this);
   }
 
   toggleShow() {
     this.setState({
       show: !this.state.show
     })
+  }
+
+  updateStyle() {
+    this.props.updateStyle()
   }
 
   render() {
@@ -40,6 +45,7 @@ class EditTab extends React.Component {
             updateTextSection={this.props.updateTextSection}/>
         </div>
         <div className="show-btn" onClick={this.toggleShow}>Show edit tab</div>
+        <button className="cms-btn" onClick={this.updateStyle}>Update Page</button>
 
       </div>
 

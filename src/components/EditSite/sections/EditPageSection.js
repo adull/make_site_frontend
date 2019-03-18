@@ -20,6 +20,8 @@ let options = {
     let color = styles.filter((value) => value.startsWith(colorKey)).first();
     let fontSizeKey = 'fontsize-';
     let fontSize = styles.filter((value) => value.startsWith(fontSizeKey)).first();
+    let fontFamilyKey = 'fontfamily-';
+    let fontFamily = styles.filter((value) => value.startsWith(fontFamilyKey)).first();
 
     let style = {
       element: 'span',
@@ -31,6 +33,9 @@ let options = {
     }
     if(fontSize) {
       style.style.fontSize = fontSize.replace(fontSizeKey, '');
+    }
+    if (fontFamily) {
+      style.style.fontFamily = fontFamily.replace(fontFamilyKey, '');
     }
     return style;
   },
@@ -95,6 +100,13 @@ class EditPageSection extends React.Component {
           onEditorStateChange={this.onEditorStateChange}
           blockRendererFn={this.myBlockRenderer}
           blockStyleFn={this.myBlockStyleFunction}
+          toolbar={{
+            options: ['inline', 'blockType', 'fontSize', 'fontFamily', 'colorPicker', 'link', 'history'],
+            fontFamily: {
+              options: ['Arial', 'Georgia', 'Impact', 'Tahoma', 'Times New Roman', 'Verdana', 'Wingdings'],
+            }
+
+          }}
         />
         <div className="update-btn cms-btn" onClick={this.updateText}>Update</div>
       </div>
