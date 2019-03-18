@@ -250,5 +250,16 @@
         }
       }
     }
+    .section-image {
+      .edit-page-image-section {
+        .controls {
+          padding: 0px 0px 50px 0px;
+          .edit-image-section-submit {
+            position: relative;
+            top: 20px;
+          }
+        }
+      }
+    }
   }
 }

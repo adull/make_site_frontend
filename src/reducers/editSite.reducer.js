@@ -47,7 +47,7 @@ export function editSite(state = initialState, action) {
         style: addImageResultsStyle
       };
     case editSiteConstants.ADDSECTION_SUCCESS :
-      console.log(action.sectionData.body);
+      console.log("added section");
       let addSectionSuccessStyle = {
         getStyle: action.sectionData.body
       };

@@ -1,7 +1,8 @@
 import React from 'react';
 import TextSubsection from './TextSubsection';
-import ViewPageSection from './ViewPageSection'
-import EditPageSection from './EditPageSection'
+import ViewPageSection from './ViewPageSection';
+import EditPageSection from './EditPageSection';
+import EditPageImageSection from './EditPageImageSection';
 
 class PageSection extends React.Component {
   constructor(props) {
@@ -46,6 +47,7 @@ class PageSection extends React.Component {
   }
 
   updateViewToEdit() {
+    console.log(this.props.style.sectionType);
     this.props.updateView('edit', this.props.pageSectionIndex);
   }
 
@@ -65,22 +67,35 @@ class PageSection extends React.Component {
     }
 
     let index = this.props.pageSectionIndex;
+    let viewExists = this.props.viewArr[index] === ('view' || 'edit');
     let isView = this.props.viewArr[index] === 'view';
+    let isImage = this.props.style.sectionType === 'image';
+    // console.log(isImage);
     return (
       <div className={"section section-" + this.props.style.sectionType} onMouseEnter={this.toggleEditButton} onMouseLeave={this.toggleEditButton}>
         <div className="edit-btn" style={editBtnStyle} onClick={this.updateViewToEdit}>
           Edit
         </div>
-        {isView ?
-          <ViewPageSection
-            pageSectionIndex = {this.props.pageSectionIndex}
-            textSubsections={textSubsectionsArr}
-            updateViewTo={this.props.updateView}/> :
-          <EditPageSection
-            pageSectionIndex = {this.props.pageSectionIndex}
-            textSubsections={textSubsectionsArr}
-            updateText={this.updateText}
-            updateView={this.updateViewToView} />
+        {
+          isView ?
+            <ViewPageSection
+              pageSectionIndex = {this.props.pageSectionIndex}
+              textSubsections={textSubsectionsArr}
+              updateViewTo={this.props.updateView}/> :
+              isImage ?
+                <EditPageImageSection
+                  pageSectionIndex = {this.props.pageSectionIndex}
+                  textSubsections={textSubsectionsArr}
+                  updateText={this.updateText}
+                  updateView={this.updateViewToView}
+                />
+              :
+              <EditPageSection
+                // sectionType={this.props.style.sectionType}
+                pageSectionIndex = {this.props.pageSectionIndex}
+                textSubsections={textSubsectionsArr}
+                updateText={this.updateText}
+                updateView={this.updateViewToView} />
         }
       </div>
     );

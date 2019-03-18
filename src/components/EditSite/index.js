@@ -42,7 +42,7 @@ class EditSite extends React.Component {
   addImageSection(hash, image, newStyle) {
     console.log(newStyle);
     let style = JSON.parse(this.props.editSite.style.results.getStyle);
-    let imageString = "<img src='/cms-api/get-image/" + this.state.siteURL + "/" + hash +"' />";
+    let imageString = "<img src='/cms-api/get-image/" + this.state.siteURL + "/" + hash +"' + style='transform: skew(0deg, 0deg) rotate(0deg) scale(1, 1) ;' />";
     let newSection = {
       sectionType: 'image',
       text: [{
