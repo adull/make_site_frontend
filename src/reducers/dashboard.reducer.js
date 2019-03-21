@@ -13,9 +13,10 @@ export function dashboard(state = initialState, action) {
         loading: true
       };
     case dashboardConstants.GETPAGES_SUCCESS:
+      // console.log(action);
       return {
         ...state,
-        items: action.userPages.results
+        items: action.pageData
       };
     case dashboardConstants.GETPAGES_FAILURE:
       return {
@@ -30,7 +31,7 @@ export function dashboard(state = initialState, action) {
     case dashboardConstants.NEWPAGE_SUCCESS:
       return {
         ...state,
-        pageData: action.pageData,
+        items: action.pageData,
         showAddPageModal: false
       }
     case dashboardConstants.NEWPAGE_FAILURE:
@@ -44,9 +45,11 @@ export function dashboard(state = initialState, action) {
         loading: true
       };
     case dashboardConstants.DELETEPAGE_SUCCESS:
+      console.log(action)
       return {
         ...state,
         loading: false,
+        items: action.pageData,
         showDeletePageModal: false
 
       };

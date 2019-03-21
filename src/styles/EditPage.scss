@@ -3,16 +3,24 @@
 .edit-site {
   display: flex;
   flex-direction: row;
+  @media(max-width: $bp-sm) {
+    flex-direction: column;
+  }
   .edit-tab {
     height: 100vh;
-    width: 35%;
+    width: 35vw;
     // background-color: red;
     border-right: 2px solid $black;
     transition: 0.3s all;
     overflow: scroll;
+    @media(max-width: $bp-sm) {
+      height: auto;
+      width: 100vw;
+    }
     &.show {
+      height: 100%;
       border-right: 2px solid $black;
-      width: 35%;
+      width: 100%;
       .cms-btn {
         text-align: right;
       }
@@ -197,8 +205,10 @@
       }
     }
     &.hide {
+      height: 0px;
       width: 0px;
       border: none;
+      transition: 0.3s all;
       .edit-tab-controls {
         display: none;
       }

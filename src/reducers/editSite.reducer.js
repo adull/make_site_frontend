@@ -14,8 +14,6 @@ export function editSite(state = initialState, action) {
         viewArr: newViewArr
       }
     case editSiteConstants.ADDSECTION_REQUEST :
-    // console.log("add section request");
-
       let addSectionStyle = {
         getStyle: JSON.stringify(action.style)
       };

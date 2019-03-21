@@ -16,6 +16,8 @@ function newPage(newPageData) {
   return fetch(`/cms-api/new-page`, requestOptions)
       .then(handleResponse)
       .then(newPage => {
+          console.log(newPage);
+          return newPage;
         // console.log("finished making new page")
       });
 }
@@ -35,6 +37,7 @@ function getPages() {
 }
 
 function deletePage(page) {
+  console.log("delete page in service")
   const requestOptions = {
     method: 'GET',
     headers: authHeader()
@@ -43,8 +46,9 @@ function deletePage(page) {
   return fetch(`/cms-api/delete-page/` + page, requestOptions)
       .then(handleResponse)
       .then(deletePage => {
-        getPages();
-        return;
+        // getPages();
+        console.log(deletePage);
+        return deletePage;
       })
 }
 
@@ -53,7 +57,9 @@ function handleResponse(response) {
       // console.log(response)
         const data = text && JSON.parse(text);
         if (!response.ok) {
+          console.log("error error");
             if (response.status === 401) {
+              console.log("weird response")
             }
 
             const error = (data && data.message) || response.statusText;

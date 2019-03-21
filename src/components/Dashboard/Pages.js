@@ -18,16 +18,17 @@ class Pages extends React.Component {
       )
     }
     else if(this.props.data.items) {
-      if(this.props.data.items.getPages) {
-        // console.log(this.props.data.items.getPages)
-        let pages = this.props.data.items.getPages;
+      if(this.props.data.items) {
+        // console.log(this.props.data)
+
+        let pages = this.props.data.items;
         let pageArr = [];
         for(let i = 0; i < pages.length; i ++ ) {
           let page = pages[i];
           pageArr.push(<Page key={i} id={page.id} author={page.author} url={page.url} title={page.title} style={page.style} deleteClicked={this.props.onDelete}/>)
         }
+        // console.log(pageArr);
         if(pageArr.length > 0) {
-          // console.log(pageArr);
           return(
             <div className="pages">
               {pageArr}
