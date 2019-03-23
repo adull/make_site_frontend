@@ -34,7 +34,7 @@ function newPage(newPageData) {
   };
 
   function request() { return { type: dashboardConstants.NEWPAGE_REQUEST }}
-  function success(newPageData) { console.log(newPageData); return { type: dashboardConstants.NEWPAGE_SUCCESS, pageData: newPageData.pages }}
+  function success(newPageData) { return { type: dashboardConstants.NEWPAGE_SUCCESS, pageData: newPageData.pages }}
   function failure(error) { return { type: dashboardConstants.NEWPAGE_FAILURE, error}}
 }
 

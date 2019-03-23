@@ -20,7 +20,8 @@
     &.show {
       height: 100%;
       border-right: 2px solid $black;
-      width: 100%;
+      // width: 100%;
+      z-index: 1;
       .cms-btn {
         text-align: right;
       }
@@ -257,6 +258,7 @@
       .edit-page-section {
         .update-btn {
           width: 100px;
+          z-index: 9;
         }
       }
     }

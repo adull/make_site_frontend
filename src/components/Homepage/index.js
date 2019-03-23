@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import BrowseSite from '../BrowseSite'
 
 
 class HomepageComponent extends React.Component {
@@ -11,6 +12,7 @@ class HomepageComponent extends React.Component {
           <Link to="/login" className="cms-btn">Login</Link>
           <Link to="/register" className="cms-btn">Register</Link>
         </div>
+        <BrowseSite />
       </div>
     );
   }

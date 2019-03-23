@@ -83,7 +83,7 @@ class Login extends React.Component {
 
 function mapStateToProps(state) {
     const { registering } = state.registration;
-    console.log({registering})
+    // console.log({registering})
     return {
       registering
     }
