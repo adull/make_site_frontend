@@ -56,7 +56,7 @@ class PageSection extends React.Component {
   }
 
   render() {
-    // console.log(this.props)
+    console.log(this.props)
     let textSubsectionsArr = [];
     for(let i = 0; i < this.props.style.text.length; i ++ ) {
       textSubsectionsArr.push(<TextSubsection key={i} data={this.props.style.text[i]} />);

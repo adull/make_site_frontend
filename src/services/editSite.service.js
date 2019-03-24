@@ -99,6 +99,7 @@ function editSection(siteURL, sectionData) {
 }
 
 function getStyle(siteURL) {
+  console.log("bitch")
   const requestOptions = {
     method: 'GET',
     headers: authHeader()
@@ -107,12 +108,13 @@ function getStyle(siteURL) {
   return fetch(`/cms-api/get-style/` + siteURL, requestOptions)
     .then(handleResponse)
     .then(style => {
+      console.log(style)
       return style;
     })
 }
 
 function handleResponse(response) {
-    // console.log(response)
+    console.log(response)
     return response.text().then(text => {
 
       // console.log(response)
@@ -131,7 +133,7 @@ function handleResponse(response) {
           return Promise.reject(error);
         }
         else {
-          // console.log("should return data")
+          console.log("should return data")
           return data;
         }
     });

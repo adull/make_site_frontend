@@ -107,12 +107,14 @@ function editSection(siteURL, editData) {
 }
 
 function getStyle(siteURL) {
+  console.log("in get style");
   return dispatch => {
     dispatch(request());
 
     editSiteService.getStyle(siteURL)
     .then (
       style => {
+        // console.log(style);
         dispatch(success(style));
       },
       error => {

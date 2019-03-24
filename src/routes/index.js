@@ -8,7 +8,7 @@ import Dashboard from '../components/Dashboard';
 import Login from '../components/Login';
 import Register from '../components/Register';
 import EditSite from '../components/EditSite';
-import HTMLConvertExample from '../components/EditSite/sections/Test';
+import ViewSite from '../components/ViewSite';
 
 import { alertActions } from '../actions';
 import { history } from '../helpers';
@@ -32,7 +32,7 @@ class Routes extends React.Component {
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <Route path="/edit-site/:siteURL" component={EditSite} />
-          <Route path="/test" component={HTMLConvertExample} />
+          <Route path="/p/:siteURL" component={ViewSite} />
         </Switch>
       </Router>
     );
