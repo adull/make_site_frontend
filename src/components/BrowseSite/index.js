@@ -23,7 +23,9 @@ class BrowseSite extends React.Component {
         </div>
         {this.props.featuredSites ?
           <FeaturedPages pages={this.props.featuredSites} /> :
-          <div className="loading"></div>
+          <span>
+            <div className="loading"></div><span>Loading Featured Pages...</span>
+          </span>
         }
       </div>
     )
