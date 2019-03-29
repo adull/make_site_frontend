@@ -1,16 +1,17 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class FeaturedPage extends React.Component {
   render() {
     return (
-      <a href={"/p/" + this.props.data.url} className="featured-page">
+      <Link className="featured-page" to={"/p/" + this.props.data.url}>
         <div className="featured-page-title">
           {this.props.data.title}
         </div>
         <div className="featured-page-author">
           By: {this.props.data.author}
         </div>
-      </a>
+      </Link>
     )
   }
 }
