@@ -25,6 +25,7 @@ class Routes extends React.Component {
   }
   render() {
     console.log(process.env.PUBLIC_URL);
+    console.log(`${process.env.PUBLIC_URL}/login`)
     return(
       <Router basename={'/sites'} history={history}>
         <Switch>

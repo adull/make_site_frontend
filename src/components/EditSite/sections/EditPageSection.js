@@ -22,6 +22,8 @@ let options = {
     let fontSize = styles.filter((value) => value.startsWith(fontSizeKey)).first();
     let fontFamilyKey = 'fontfamily-';
     let fontFamily = styles.filter((value) => value.startsWith(fontFamilyKey)).first();
+    let textAlignKey = 'textalign-'
+    let textAlign = styles.filter((value) => value.startsWith(textAlignKey)).first();
 
     let style = {
       element: 'span',
@@ -36,6 +38,9 @@ let options = {
     }
     if (fontFamily) {
       style.style.fontFamily = fontFamily.replace(fontFamilyKey, '');
+    }
+    if(textAlign) {
+      style.style.textAlignment = textAlign.replace(textAlignKey, '');
     }
     return style;
   },
@@ -103,7 +108,7 @@ class EditPageSection extends React.Component {
           toolbar={{
             options: ['inline', 'blockType', 'fontSize', 'fontFamily', 'colorPicker', 'link', 'history'],
             fontFamily: {
-              options: ['Arial', 'Georgia', 'Impact', 'Tahoma', 'Times New Roman', 'Verdana', 'Wingdings'],
+              options: ['Arial', 'Georgia', 'Impact', 'Tahoma', 'Times New Roman', 'Verdana', 'Wingdings', 'SNFS'],
             }
 
           }}

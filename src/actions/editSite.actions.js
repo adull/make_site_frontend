@@ -15,7 +15,7 @@ export const editSiteActions = {
 }
 
 function addSection(siteURL, style) {
-  console.log("in actions - add regular section")
+  // console.log("in actions - add regular section")
   // console.log(style);
   return dispatch => {
     dispatch(request(siteURL, style));
@@ -38,11 +38,11 @@ function addSection(siteURL, style) {
 }
 
 function addImageSection(siteURL, hash, image, style) {
-  console.log(style);
-  console.log("in actions - add image section")
+  // console.log(style);
+  // console.log("in actions - add image section")
   return dispatch => {
-    console.log("style")
-    console.log(style);
+    // console.log("style")
+    // console.log(style);
     dispatch(request(siteURL, hash, image, style));
 
     editSiteService.addImageSection(siteURL, hash, image, style)
@@ -90,7 +90,7 @@ function editSection(siteURL, editData) {
     editSiteService.editSection(siteURL, editData)
       .then (
         edit => {
-          console.log(editData);
+          // console.log(editData);
           dispatch(success(editData));
         },
         error => {
@@ -107,7 +107,7 @@ function editSection(siteURL, editData) {
 }
 
 function getStyle(siteURL) {
-  console.log("in get style");
+  // console.log("in get style");
   return dispatch => {
     dispatch(request());
 

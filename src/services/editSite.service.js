@@ -36,7 +36,7 @@ function addImageSection(siteURL, imageID, image, style) {
     return;
   }
   else {
-    console.log("style is not undefined")
+    // console.log("style is not undefined")
   }
   let data = new FormData();
   data.append("name", imageID);
@@ -54,7 +54,7 @@ function addImageSection(siteURL, imageID, image, style) {
   return fetch(`/cms-api/add-image-section/` + siteURL, requestOptions)
     .then(handleResponse)
     .then(addImageSection => {
-      console.log(addImageSection);
+      // console.log(addImageSection);
       return addImageSection;
     });
 }
@@ -68,7 +68,7 @@ function deleteSection(siteURL, sectionIndex) {
   return fetch(`/cms-api/delete-section/` + siteURL + '/' + sectionIndex, requestOptions)
     .then(handleResponse)
     .then(deleteSection => {
-      console.log(deleteSection)
+      // console.log(deleteSection)
       return deleteSection;
     });
 
@@ -99,7 +99,7 @@ function editSection(siteURL, sectionData) {
 }
 
 function getStyle(siteURL) {
-  console.log("bitch")
+  // console.log("bitch")
   const requestOptions = {
     method: 'GET',
     headers: authHeader()
@@ -108,13 +108,13 @@ function getStyle(siteURL) {
   return fetch(`/cms-api/get-style/` + siteURL, requestOptions)
     .then(handleResponse)
     .then(style => {
-      console.log(style)
+      // console.log(style)
       return style;
     })
 }
 
 function handleResponse(response) {
-    console.log(response)
+    // console.log(response)
     return response.text().then(text => {
 
       // console.log(response)
@@ -128,12 +128,12 @@ function handleResponse(response) {
             return Promise.reject(error);
         }
         else if(data.success === false) {
-          console.log("sucess is false")
+          // console.log("sucess is false")
           const error = (data && data.message) || response.statusText;
           return Promise.reject(error);
         }
         else {
-          console.log("should return data")
+          // console.log("should return data")
           return data;
         }
     });

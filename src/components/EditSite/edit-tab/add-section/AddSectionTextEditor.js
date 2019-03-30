@@ -59,10 +59,22 @@ class AddSectionTextEditor extends React.Component {
   render() {
     return (
       <div className="add-section-text-editor">
-        <Editor
-          editorState={this.state.editorState}
-          onEditorStateChange={this.onEditorStateChange}
-        />
+      <Editor
+        ref={this.setEditor}
+        wrapperClassName="demo-wrapper"
+        editorClassName="demo-editor"
+        editorState={this.state.editorState}
+        onEditorStateChange={this.onEditorStateChange}
+        blockRendererFn={this.myBlockRenderer}
+        blockStyleFn={this.myBlockStyleFunction}
+        toolbar={{
+          options: ['inline', 'blockType', 'fontSize', 'fontFamily', 'colorPicker', 'link', 'history'],
+          fontFamily: {
+            options: ['Arial', 'Georgia', 'Impact', 'Tahoma', 'Times New Roman', 'Verdana', 'Wingdings', 'SNFS'],
+          }
+
+        }}
+      />
       </div>
     )
   }

@@ -97,7 +97,7 @@ class EditSite extends React.Component {
 
   render() {
     if(this.props.editSite.style) {
-      console.log(this.props.editSite)
+      // console.log(this.props.editSite)
       let style = JSON.parse(this.props.editSite.style.results.getStyle);
       return (
         <div className="edit-site">
