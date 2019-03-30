@@ -12,13 +12,14 @@ class ViewSite extends React.Component {
     this.state = {
       siteURL: siteURL,
     }
+    document.title = siteURL;
     this.props.getStyle(siteURL);
   }
 
   render() {
-    console.log(this.props.editSite)
+    // console.log(this.props.editSite)
     if(this.props.editSite.style) {
-      console.log(this.props.editSite.style.results.getStyle)
+      // console.log(this.props.editSite.style.results.getStyle)
       let style = JSON.parse(this.props.editSite.style.results.getStyle);
       let styleParse = this.props.editSite.style.results.getStyle;
       // console.log(style)
@@ -38,7 +39,7 @@ class ViewSite extends React.Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state);
+  // console.log(state);
   return {
     editSite: state.editSite,
   }

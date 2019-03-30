@@ -30,15 +30,10 @@ class Routes extends React.Component {
       <Router basename={'/sites'} history={history}>
         <Switch>
           <Route exact path={`${process.env.PUBLIC_URL}/`} component={Homepage} />
-          // <Route path="/dashboard" render={(_props) => <Dashboard />} />
           <Route path={`${process.env.PUBLIC_URL}/dashboard`} render={(_props) => <Dashboard />} />
-          // <Route path="/login" component={Login} />
           <Route path={`${process.env.PUBLIC_URL}/login`} component={Login} />
-          // <Route path="/register" component={Register} />
           <Route path={`${process.env.PUBLIC_URL}/register`} component={Register} />
-          // <Route path="/edit-site/:siteURL" component={EditSite} />
           <Route path={`${process.env.PUBLIC_URL}/edit-site/:siteURL`} component={EditSite} />
-          // <Route path="/p/:siteURL" component={ViewSite} />
           <Route path={`${process.env.PUBLIC_URL}/p/:siteURL`} component={ViewSite} />
         </Switch>
       </Router>

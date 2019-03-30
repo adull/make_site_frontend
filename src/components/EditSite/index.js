@@ -14,6 +14,7 @@ class EditSite extends React.Component {
       siteURL: siteURL,
       // style: this.props.getStyle(siteURL)
     }
+    document.title = siteURL;
     this.props.getStyle(siteURL);
     this.addSection = this.addSection.bind(this);
     this.addImageSection = this.addImageSection.bind(this);
