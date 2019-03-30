@@ -92,7 +92,7 @@ class Register extends React.Component {
                 <div className="loading"></div>
             }
           </div>
-          <Link to="/login" className="btn btn-link">Already have an account? Log in!</Link>
+          <Link to={`${process.env.PUBLIC_URL}/login`} className="btn btn-link">Already have an account? Log in!</Link>
         </form>
       </div>
     )

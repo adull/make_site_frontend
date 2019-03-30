@@ -14,7 +14,7 @@ class Page extends React.Component {
   render(props) {
     return (
       <div className="page">
-        <Link className="page-btn" to={"/edit-site/" + this.props.url}>
+        <Link className="page-btn" to={`${process.env.PUBLIC_URL}/edit-site/${this.props.url}`}>
           {this.props.title}
         </Link>
         <button className="page-delete" onClick={this.delete}>
