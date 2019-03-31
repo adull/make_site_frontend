@@ -19,7 +19,7 @@ function login(loginData) {
       .then (
         user => {
           dispatch(success(loginData));
-          history.push('/dashboard');
+          history.push(`${process.env.PUBLIC_URL}/dashboard`);
         },
         error => {
           dispatch(failure(error.toString()));
