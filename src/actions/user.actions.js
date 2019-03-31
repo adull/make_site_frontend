@@ -48,7 +48,7 @@ function register(user) {
     userService.register(user)
       .then (user => {
           dispatch(success());
-          history.push('/login');
+          history.push(`${process.env.PUBLIC_URL}/login`);
           dispatch(alertActions.success("Succesfully registered"));
         },
         error => {
