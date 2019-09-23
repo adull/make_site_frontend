@@ -11,6 +11,9 @@
     // color: $red;
     color: $brown;
     text-align: center;
+    @media(max-width: $bp-sm) {
+      font-size: 300%;
+    }
   }
   .homepage-links {
     margin: 5% 0%;
@@ -39,8 +42,11 @@
     }
     .featured-pages {
       .featured-pages-links {
-        // display: flex;
-        // flex-wrap: wrap;
+        display: flex;
+        flex-wrap: wrap;
+        @media(max-width: $bp-sm) {
+          display: block;
+        }
         .featured-page {
           margin: 50px;
           padding: 20px;

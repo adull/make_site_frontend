@@ -34,9 +34,9 @@ class ViewSite extends React.Component {
             <meta property="og:image" content={`${process.env.PUBLIC_URL}/cms-api/get-social-image/${this.state.siteURL}`} />
             <meta property="og:url" content={`${process.env.PUBLIC_URL}/p/${this.state.siteURL}`} />
             <meta property="og:site_name" content="Adlai's Blog Site Mother Fucker" />
-            <meta name="twitter:card" value="look at this cool site">
-            <meta name="twitter:site" content="@aaddllaaii">
-            <meta name="twitter:creator" content="@aaddllaaii">
+            <meta name="twitter:card" value="look at this cool site" />
+            <meta name="twitter:site" content="@aaddllaaii" />
+            <meta name="twitter:creator" content="@aaddllaaii" />
             <meta name="twitter:title" content={this.state.siteURL} />
             <meta name="twitter:image" content={`${process.env.PUBLIC_URL}/cms-api/get-social-image/${this.state.siteURL}`} />
           </Helmet>
