@@ -10,17 +10,6 @@ class AllPages extends React.Component {
       pageArr.push(<Page data={this.props.pages[i]} key={"fuck" + i} />);
     }
     // console.log(pageArr);
-    // return (
-    //   <div className="all-pages">
-    //     <div className="all-pages-title">
-    //       All Pages
-    //     </div>
-    //     <div className="all-pages-links">
-    //       {pageArr}
-    //     </div>
-    //   </div>
-    // )
-    console.log(pageArr);
     return (
       <div className="all-pages">
         {pageArr}

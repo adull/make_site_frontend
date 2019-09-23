@@ -1,6 +1,6 @@
 import React from 'react';
 import FeaturedPages from './FeaturedPages';
-import AllPages from './AllPages';
+// import AllPages from './AllPages';
 import { connect } from 'react-redux';
 
 import { browseSiteActions } from '../../actions';
