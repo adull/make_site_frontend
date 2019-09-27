@@ -117,6 +117,22 @@ export function editSite(state = initialState, action) {
     case editSiteConstants.GETSTYLE_FAILURE :
       return {
       }
+    case editSiteConstants.GETTITLE_REQUEST :
+      console.log("ge title request")
+      return {
+        ...state,
+        loading: true
+      }
+    case editSiteConstants.GETTITLE_SUCCESS :
+      return {
+        ...state,
+        title: action.title,
+        loading: false,
+      }
+    case editSiteConstants.GETTITLE_FAILURE :
+      return {
+        ...state,
+      }
     case editSiteConstants.UPDATESTYLE:
       // console.log("updatestyle")
       return {

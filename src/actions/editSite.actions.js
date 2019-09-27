@@ -10,6 +10,7 @@ export const editSiteActions = {
   deleteSection,
   editSection,
   getStyle,
+  getTitle,
   updateSiteBackground,
   updateView
 }
@@ -127,6 +128,27 @@ function getStyle(siteURL) {
   function request() { return { type: editSiteConstants.GETSTYLE_REQUEST }};
   function success(style) { return { type: editSiteConstants.GETSTYLE_SUCCESS, style }};
   function failure(error) { return { type: editSiteConstants.GETSTYLE_FAILURE, error }};
+}
+
+function getTitle(siteURL) {
+  return dispatch => {
+    dispatch(request());
+
+    editSiteService.getTitle(siteURL)
+    .then (
+      title => {
+        dispatch(success(title));
+      },
+      error => {
+        dispatch(failure(error.toString()));
+        dispatch(alertActions.error(error.toString()));
+      }
+    )
+  }
+
+  function request() { return { type: editSiteConstants.GETTITLE_REQUEST }};
+  function success(title) { return { type: editSiteConstants.GETTITLE_SUCCESS, title }};
+  function failure(error) { return { type: editSiteConstants.GETTITLE_FAILURE, error }};
 }
 
 function updateSiteBackground(backgroundJSON) {

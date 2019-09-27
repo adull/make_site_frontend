@@ -4,7 +4,8 @@ export const editSiteService = {
   addSection,
   addImageSection,
   editSection,
-  getStyle
+  getStyle,
+  getTitle
 }
 
 function addSection(siteURL, style, type) {
@@ -110,6 +111,19 @@ function getStyle(siteURL) {
     .then(style => {
       // console.log(style)
       return style;
+    })
+}
+
+function getTitle(siteURL) {
+  const requestOptions = {
+    method: 'GET',
+    headers: authHeader()
+  };
+
+  return fetch(`/cms-api/get-title/` + siteURL, requestOptions)
+    .then(handleResponse)
+    .then(title => {
+      return title;
     })
 }
 

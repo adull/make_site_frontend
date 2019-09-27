@@ -10,22 +10,25 @@ class ViewSite extends React.Component {
   constructor(props) {
     super(props);
     let siteURL = props.match.params.siteURL;
-    console.log(siteURL);
     this.state = {
       siteURL: siteURL,
     }
     document.title = siteURL;
+    console.log(this.props)
     this.props.getStyle(siteURL);
+    this.props.getTitle(siteURL);
   }
 
   render() {
-    // console.log(this.props.editSite)
     if(this.props.editSite.style) {
-      // console.log(this.props.editSite.style.results.getStyle)
+      console.log(this.props.editSite)
       let style = JSON.parse(this.props.editSite.style.results.getStyle);
       let styleParse = this.props.editSite.style.results.getStyle;
-      // console.log(style)
-      // console.log(styleParse)
+      let siteTitle = '';
+      if(this.props.editSite.title) {
+        siteTitle = this.props.editSite.title.results.getTitle;
+      }
+      console.log(siteTitle)
       return (
         <div className="view-site">
           <Helmet>
@@ -33,12 +36,13 @@ class ViewSite extends React.Component {
             <meta property="og:type" content="website" />
             <meta property="og:image" content={`${process.env.PUBLIC_URL}/cms-api/get-social-image/${this.state.siteURL}`} />
             <meta property="og:url" content={`${process.env.PUBLIC_URL}/p/${this.state.siteURL}`} />
-            <meta property="og:site_name" content="Adlai's Blog Site Mother Fucker" />
+            <meta property="og:site_name" content={siteTitle} />
             <meta name="twitter:card" value="look at this cool site" />
             <meta name="twitter:site" content="@aaddllaaii" />
             <meta name="twitter:creator" content="@aaddllaaii" />
             <meta name="twitter:title" content={this.state.siteURL} />
             <meta name="twitter:image" content={`${process.env.PUBLIC_URL}/cms-api/get-social-image/${this.state.siteURL}`} />
+            <title>{siteTitle}</title>
           </Helmet>
           <ViewPage style={style} viewArr={this.props.editSite.viewArr}/>
         </div>
@@ -62,6 +66,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     getStyle: (url) => { dispatch(editSiteActions.getStyle(url)) },
+    getTitle: (url) => { dispatch(editSiteActions.getTitle(url)) },
   }
 }
 
