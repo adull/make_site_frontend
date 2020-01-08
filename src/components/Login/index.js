@@ -71,7 +71,7 @@ class Login extends React.Component {
           <div className="form-group">
             <button className="submit">Log in</button>
           </div>
-          {this.submitted && this.state.validSubmission &&
+          {this.state.submitted && this.state.validSubmission &&
               <div className="loading"></div>
           }
           <Link to={`${process.env.PUBLIC_URL}/register`} className="btn btn-link">Don't have an account? Register here</Link>

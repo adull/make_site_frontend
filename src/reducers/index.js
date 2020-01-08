@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 
 import { alert } from './alert.reducer';
 import { authentication } from './authentication.reducer';
+import { comment } from './comment.reducer';
 import { browseSite } from './browseSite.reducer';
 import { dashboard } from './dashboard.reducer';
 import { editSite } from './editSite.reducer';
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   alert,
   authentication,
   browseSite,
+  comment,
   dashboard,
   editSite,
   registration,

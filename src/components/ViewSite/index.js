@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import ViewPage from './ViewPage';
+import Comments from '../Comments';
 import { editSiteActions } from '../../actions';
 
 import {Helmet} from "react-helmet";
@@ -14,21 +15,21 @@ class ViewSite extends React.Component {
       siteURL: siteURL,
     }
     document.title = siteURL;
-    console.log(this.props)
+    // console.log(this.props)
     this.props.getStyle(siteURL);
     this.props.getTitle(siteURL);
   }
 
   render() {
     if(this.props.editSite.style) {
-      console.log(this.props.editSite)
+      // console.log(this.props)
       let style = JSON.parse(this.props.editSite.style.results.getStyle);
       let styleParse = this.props.editSite.style.results.getStyle;
       let siteTitle = '';
       if(this.props.editSite.title) {
         siteTitle = this.props.editSite.title.results.getTitle;
       }
-      console.log(siteTitle)
+      // console.log(siteTitle)
       return (
         <div className="view-site">
           <Helmet>
@@ -45,6 +46,8 @@ class ViewSite extends React.Component {
             <title>{siteTitle}</title>
           </Helmet>
           <ViewPage style={style} viewArr={this.props.editSite.viewArr}/>
+          <Comments />
+
         </div>
       )
     }
