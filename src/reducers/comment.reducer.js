@@ -39,8 +39,6 @@ export function comment(state = {loading: true, comments: []}, action) {
         loading: true
       }
     case commentConstants.GETCOMMENTS_SUCCESS:
-    console.log("im here in the reducer")
-    console.log(action)
       return {
         ...state,
         comments: action.comments.comments,

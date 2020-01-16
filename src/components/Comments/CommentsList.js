@@ -23,7 +23,14 @@ class CommentsList extends React.Component {
   constructor(props) {
     super(props);
     let pathName = window.location.pathname;
-    let url = pathName.slice(3);
+    let url
+    if(process.env.NODE_ENV === "development") {
+      url = pathName.slice(3);
+    }
+    // else if(pathName.startsWith('/sites/p/')) {
+    if(process.env.NODE_ENV === "production") {
+      url = pathName.slice(9);
+    }
     let bruh = props.getComments(url)
   }
 
