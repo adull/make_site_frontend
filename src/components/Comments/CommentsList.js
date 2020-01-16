@@ -4,38 +4,36 @@ import { connect } from 'react-redux';
 import { commentActions } from '../../actions';
 
 class CommentsList extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     let pathName = window.location.pathname;
     let url = pathName.slice(3);
-    console.log(this.props)
-    // this.props.getComments(url)
+    // console.log("fuck you dad")
+    // console.log(this.props)
+    props.getComments(url)
   }
   render() {
+    // console.log("sheainteeennkowit")
     console.log(this.props)
     let pathName = window.location.pathname;
     let url = pathName.slice(3);
-    // this.props.getComments(url)
-    // console.log(this.props)
+
     return (
       <div className="comments-list">
-        comment list
+        comment list dude!
       </div>
     )
   }
 }
 
 function mapDispatchToProps(dispatch) {
-  // console.log("map dispatch")
   return {
     getComments: (url) => { dispatch(commentActions.getComments(url)) },
   }
 }
 
 function mapStateToProps(state) {
-  // console.log(state)
     const { comment } = state.comment;
-    // console.log({registering})
     return {
       comment
     }

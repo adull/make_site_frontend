@@ -23,8 +23,6 @@ export function comment(state = {}, action) {
         loading: true
       }
     case commentConstants.NEWCOMMENT_SUCCESS:
-      console.log("action!")
-      console.log(action)
       return {
         ...state,
         comments: action.newCommentData,
@@ -41,8 +39,6 @@ export function comment(state = {}, action) {
         loading: true
       }
     case commentConstants.GETCOMMENTS_SUCCESS:
-    console.log("get comments success")
-      console.log(action)
       return {
         ...state,
         comments: action.comments,

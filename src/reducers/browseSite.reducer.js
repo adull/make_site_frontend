@@ -8,7 +8,7 @@ export function browseSite(state = {}, action) {
         loading: true
       }
     case browseSiteConstants.GETFEATUREDSITES_SUCCESS:
-    console.log(action)
+    // console.log(action)
       return {
         ...state,
         featuredSites: action.pages,
@@ -25,7 +25,7 @@ export function browseSite(state = {}, action) {
         loading: true
       }
     case browseSiteConstants.GETALLSITES_SUCCESS:
-      console.log(action)
+      // console.log(action)
       return {
         ...state,
         allSites: action.pages,

@@ -38,6 +38,8 @@ function getComments(url) {
 
     commentService.getComments(url)
     .then(comments => {
+      console.log("in action - getcomments")
+      console.log(comments)
       dispatch(success(comments));
     },
     error => {

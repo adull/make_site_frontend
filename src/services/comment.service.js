@@ -38,7 +38,7 @@ function getComments(url) {
     method: 'GET',
     headers: authHeader()
   }
-
+  console.log("get da comments")
   // return null
 
   return fetch(`/cms-api/get-comments/` + url, requestOptions)
