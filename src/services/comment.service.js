@@ -10,27 +10,31 @@ function newComment(newCommentData) {
   // console.log(newCommentData)
   console.log(window)
   let pathName = window.location.pathname
-  if(pathName.startsWith('/p/')) {
-    let url = pathName.slice(3);
-    const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(newCommentData)
-    };
-
-    // return null
-
-    return fetch(`/cms-api/new-comment/` + url, requestOptions)
-        .then(handleResponse)
-        .then(newComment => {
-            console.log(newComment);
-            return newComment.comments;
-        });
+  let url
+  // if(pathName.startsWith('/p/')) {
+  if(process.env.NODE_ENV === "development") {
+    url = pathName.slice(3);
   }
-  else {
-    alert("wtf are u doing man")
-    return null;
+  // else if(pathName.startsWith('/sites/p/')) {
+  if(process.env.NODE_ENV === "production") {
+    url = pathName.slice(9);
+    console.log(url)
   }
+  const requestOptions = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(newCommentData)
+  };
+
+  // return null
+
+  return fetch(`/cms-api/new-comment/` + url, requestOptions)
+      .then(handleResponse)
+      .then(newComment => {
+          // console.log(newComment);
+          return newComment.comments;
+      });
+
 }
 
 function getComments(url) {
