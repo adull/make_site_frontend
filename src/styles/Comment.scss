@@ -1,0 +1,57 @@
+@import "variables";
+
+.comments {
+  background-color: $black;
+  color: white;
+  .comments-title {
+    font-size: 72px;
+    text-align: center;
+  }
+  .comments-list {
+    .comment {
+      border: 10px solid white;
+      border-radius: 10px;
+      display: flex;
+      margin: 10px;
+      background-color: red;
+      transition: 0.3s all;
+      .commenter {
+        padding: 20px;
+        margin-left: 20px;
+        margin-right: 40px;
+        transition: 0.3s all;
+        font-size: 100px;
+      }
+      .comment-body {
+        padding-left: 20px;
+        display: flex;
+        flex-grow: 1;
+        align-items: center;
+        background-color: black;
+        color: white;
+        font-size: 120px;
+      }
+    }
+  }
+  .write-comment {
+    margin: 60px 20px 0;
+    padding-bottom: 60px;
+    display: flex;
+    flex-direction: column;
+    border-top: 4px solid green;
+    .new-comment {
+      padding-top: 15px;
+      color: red;
+      // text-decoration: underline;
+    }
+    .fuckin-input {
+      font-size: 48px;
+      display: flex;
+      flex-direction: column;
+      input {
+        height: 60px;
+        font-size: 48px;
+      }
+    }
+  }
+}

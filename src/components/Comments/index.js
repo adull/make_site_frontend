@@ -7,6 +7,9 @@ class Comments extends React.Component {
     console.log("comments")
     return (
       <div className="comments">
+        <div className="comments-title">
+          COMMENTS
+        </div>
         <CommentsList />
         <WriteComment />
       </div>

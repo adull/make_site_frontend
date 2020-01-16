@@ -41,17 +41,18 @@ class WriteComment extends React.Component {
   render() {
     return (
       <form name="comment-form" className="write-comment" onSubmit={this.handleSubmit}>
-        <label htmlFor="commentText">
-           Comment:
-           <input name="commentText" type="text" value={this.state.value} onChange={this.handleChange} required/>
-         </label>
-         <label htmlFor="commenterName">
-            What is your fucking Name:
-            <input name="commenterName" type="text" value={this.state.value} onChange={this.handleChange} required/>
-          </label>
-          <div className="form-group">
-            <button className="submit">Post comment</button>
-          </div>
+        <div className="new-comment">NEW COMMENT</div>
+        <label className="fuckin-input" htmlFor="commenterName">
+          <>What is your fucking Name:</>
+          <input name="commenterName" type="text" value={this.state.value} onChange={this.handleChange} required/>
+        </label>
+        <label className="fuckin-input" htmlFor="commentText">
+          Comment:
+          <input name="commentText" type="text" value={this.state.value} onChange={this.handleChange} required/>
+        </label>
+        <div className="form-group">
+          <button className="submit cms-btn">Post comment</button>
+        </div>
       </form>
     )
   }

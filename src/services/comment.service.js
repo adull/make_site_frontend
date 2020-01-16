@@ -44,7 +44,6 @@ function getComments(url) {
   return fetch(`/cms-api/get-comments/` + url, requestOptions)
       .then(handleResponse)
       .then(comments => {
-          console.log(comments);
           return comments;
       });
 }
