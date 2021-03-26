@@ -6,6 +6,9 @@
   .comments-title {
     font-size: 72px;
     text-align: center;
+    @media(max-width: $bp-sm) {
+      font-size: 36px;
+    }
   }
   .comments-list {
     .comment {
@@ -21,6 +24,9 @@
         margin-right: 40px;
         transition: 0.3s all;
         font-size: 100px;
+        @media(max-width: $bp-sm) {
+          flex-direction: 42px;
+        }
       }
       .comment-body {
         padding-left: 20px;
@@ -30,6 +36,9 @@
         background-color: black;
         color: white;
         font-size: 120px;
+        @media(max-width: $bp-sm) {
+          font-size: 64px;
+        }
       }
     }
   }

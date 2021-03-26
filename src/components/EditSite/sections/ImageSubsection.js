@@ -16,9 +16,7 @@ class ImageSubsection extends React.Component {
     }
 
     let imageHtml = data.html;
-    console.log(imageHtml)
     let imageSrc = imageHtml.split("'").pop().split("'")[0];
-    console.log(imageSrc)
     return (<div>haha</div>);
 
   }

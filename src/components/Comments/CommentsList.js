@@ -69,7 +69,7 @@ class CommentsList extends React.Component {
       )
     }
     else {
-      return (<><div style={{fontSize: 100}}>no comments yet</div><div className="loading">bruh</div></>)
+      return (<><div style={{fontSize: 64}}>no comments yet</div><div className="loading">bruh</div></>)
     }
 
   }
