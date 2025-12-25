@@ -37,6 +37,6 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "react-scripts": "^3.3.0"
+    "react-scripts": "^5.0.1"
   }
 }
